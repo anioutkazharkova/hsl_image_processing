@@ -20,10 +20,20 @@ class ImageSettingsVC: UIViewController {
 
     @IBAction func processImageByClick(_ sender: Any) {
         if let im = image?.image {
-        filter?.inputImage = CIImage(image: im)
-        if let output = filter?.outputImage {
-            image?.image = UIImage(ciImage: output)
-        }
+            weak var _im = im
+            DispatchQueue.global().async {
+                guard let __im = _im else {
+                    return
+                }
+                self.filter?.inputImage = CIImage(image: __im)
+                if let output = self.filter?.outputImage {
+                    DispatchQueue.main.async {
+                         self.image?.image = UIImage(ciImage: output)
+                    }
+                   
+                }
+            }
+        
         }
     }
     
