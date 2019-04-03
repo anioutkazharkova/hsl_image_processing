@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ImageSettingsVC" customModule="HSLImageProcessing" customModuleProvider="target">
+            <connections>
+                <outlet property="image" destination="lsa-On-LBM" id="6bs-v1-UTG"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image2" translatesAutoresizingMaskIntoConstraints="NO" id="lsa-On-LBM">
+                    <rect key="frame" x="16" y="39" width="343" height="327"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H6h-zL-QXe">
+                    <rect key="frame" x="170.5" y="557" width="34" height="30"/>
+                    <state key="normal" title="Click"/>
+                    <connections>
+                        <action selector="processImageByClick:" destination="-1" eventType="touchUpInside" id="ql2-MT-O8K"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="lsa-On-LBM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Brt-RS-J8G"/>
+                <constraint firstItem="H6h-zL-QXe" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="nK2-dJ-pJ1"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="lsa-On-LBM" secondAttribute="trailing" constant="16" id="pLJ-xR-Wok"/>
+                <constraint firstItem="lsa-On-LBM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="19" id="xQg-1o-Z77"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="H6h-zL-QXe" secondAttribute="bottom" constant="80" id="zdc-7r-L4A"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="image2" width="325" height="327"/>
+    </resources>
+</document>
