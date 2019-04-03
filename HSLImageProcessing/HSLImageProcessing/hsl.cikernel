@@ -81,7 +81,7 @@ rgb = rgb*rgb*(3.0-2.0*rgb); // cubic smoothing
 return c.z * mix( vec3(1.0), rgb, c.y);
 }
 
-kernel vec4 hsl(sampler image)
+kernel vec4 hsl(sampler image,)
 { vec4 pixel = sample(image, samplerCoord(image));
 vec3 hslPixel = rgb2hsl(vec3(pixel.r,pixel.g,pixel.b));
 float h = hslPixel.r;
