@@ -27,16 +27,20 @@ defaultImage = UIImage(named: "testimage")
                 guard let __im = _im else {
                     return
                 }
+
                 self.filter?.inputImage = CIImage(image: __im, options: nil)
+
+                    self.filter?.inputImage = CIImage(image:__im)
                 if let output = self.filter?.outputImage {
                     DispatchQueue.main.async {
                          self.image?.image = UIImage(ciImage: output)
+                        self.image?.contentMode = UIView.ContentMode.scaleAspectFit
                     }
                    
+                }
                 }
             }
         
         }
-    }
     
 }

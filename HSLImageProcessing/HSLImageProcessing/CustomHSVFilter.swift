@@ -8,10 +8,14 @@
 
 import Foundation
 import CoreImage
+import UIKit
 
 class CustomHSLFilter:CIFilter {
     
-    var inputImage: CIImage? 
+    var inputImage: CIImage?
+    var filterColor: UIColor = UIColor.green
+    var saturation: CGFloat = 0.8
+    var lightness: CGFloat = 0.2
     
     override var outputImage: CIImage!
     {
@@ -19,45 +23,16 @@ class CustomHSLFilter:CIFilter {
         
         guard let path = hslData,
             let code = try? String(contentsOfFile: path),
-            let kernel = CIColorKernel(source: code) else { return nil }
+            let kernel = CIKernel(source: code) else { return nil }
         guard let inputImage = inputImage else { return nil }
         
         let extent = inputImage.extent
-        let arguments = [inputImage]
+        let arguments = [inputImage,CIColor(color: filterColor),saturation as Any,lightness as Any]
         
-        return kernel.apply(extent: extent, arguments: arguments)
+        return kernel.apply(extent: extent, roiCallback:
+            { (index, rect) in
+                return rect
+        }, arguments: arguments)
     }
 }
 
-/*
- vec4 hsv2rgb(vec4 color)
- { float h = color.r;
- float s = color.g;
- float v = color.b;
- h       = h*6.0;
- float i = floor( h );
- float f =  h -i ;
- float p =  v * ( 1.0 - s );
- float q =  v * ( 1.0 - s * f );
- float t =  v * ( 1.0 - s * ( 1.0 - f ) );
- float r = (i == 0.0 ?   v  :
- (i == 1.0 ?   q  :
- (i == 2.0 ?   p  :
- (i == 3.0 ?   p  :
- (i == 4.0 ?   t  :  v )))));
- float g = (i == 0.0 ?   t  :
- (i == 1.0 ?   v  :
- (i == 2.0 ?   v  :
- (i == 3.0 ?   q  :
- (i == 4.0 ?   p  :  p )))));
- float b = (i == 0.0 ?   p  :
- (i == 1.0 ?   p  :
- (i == 2.0 ?   t  :
- (i == 3.0 ?   v  :
- (i == 4.0 ?   v  :  q )))));
- return vec4(r, g, b, color.a);
- }
- kernel vec4 hsl2rgb(sampler image)
- { vec4 pixel = sample(image, samplerCoord(image));
- return hsv2rgb(pixel);
- }*/

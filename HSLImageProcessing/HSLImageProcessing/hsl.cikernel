@@ -81,21 +81,29 @@ rgb = rgb*rgb*(3.0-2.0*rgb); // cubic smoothing
 return c.z * mix( vec3(1.0), rgb, c.y);
 }
 
-kernel vec4 hsl(sampler image,)
+kernel vec4 hsl(sampler image, __color selectedColor, float saturation, float lightness)
 { vec4 pixel = sample(image, samplerCoord(image));
 vec3 hslPixel = rgb2hsl(vec3(pixel.r,pixel.g,pixel.b));
+vec3 hslColor = rgb2hsl(vec3(selectedColor.r,selectedColor.g,selectedColor.b));
+
 float h = hslPixel.r;
 float s = hslPixel.g;
 float l = hslPixel.b;
 
+
 if (h >= 0.8 && h<= 1.0 || h < 0.1) {
-h += (0.6 - h);
+h += (hslColor.r - h);
+
+s = saturation;
+l = l + lightness > 1.0 ? 1.0 : l+lightness;
 }
 
-/*
-l = l + 0.2 > 1.0 ? 1.0 : l+0.2;
-*/
-//s = 1.0;
+
+
+//
+
+//s = saturation;//s+ saturation > 1.0 ? 1.0 : s+saturation;
+
 vec4 newPixel = vec4(h, s, l, 1.0);
 vec3 rgbPixel =  hsv2rgb(vec3(h,s,l));
 return premultiply(vec4(rgbPixel.r,rgbPixel.g,rgbPixel.b,1.0));
