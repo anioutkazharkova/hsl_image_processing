@@ -14,8 +14,17 @@ class CustomHSLFilter:CIFilter {
     
     var inputImage: CIImage?
     var filterColor: UIColor = UIColor.green
-    var saturation: CGFloat = 0.8
-    var lightness: CGFloat = 0.2
+    var saturation: CGFloat = 1.0
+    var lightness: CGFloat = 0.5
+    var colorShift: CGFloat = 0.0
+    var sense = 0.05
+    
+    var shiftedColor:CGFloat
+    {
+        get {
+            return filterColor.hue()/360.0 - colorShift
+        }
+    }
     
     override var outputImage: CIImage!
     {
@@ -27,12 +36,14 @@ class CustomHSLFilter:CIFilter {
         guard let inputImage = inputImage else { return nil }
         
         let extent = inputImage.extent
-        let arguments = [inputImage,CIColor(color: filterColor),saturation as Any,lightness as Any]
+        let arguments = [inputImage,CIColor(color: filterColor),shiftedColor as Any, sense as Any, saturation as Any,lightness as Any]
         
         return kernel.apply(extent: extent, roiCallback:
             { (index, rect) in
                 return rect
         }, arguments: arguments)
     }
+    
+    
 }
 

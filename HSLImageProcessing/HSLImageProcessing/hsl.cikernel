@@ -81,7 +81,24 @@ rgb = rgb*rgb*(3.0-2.0*rgb); // cubic smoothing
 return c.z * mix( vec3(1.0), rgb, c.y);
 }
 
-kernel vec4 hsl(sampler image, __color selectedColor, float saturation, float lightness)
+float leftColor(float hue, float dif){
+if (hue - dif < 0) {
+return 1.0 + (hue - dif);
+} else {
+return (hue - dif);
+}
+}
+
+float rightColor(float hue, float dif){
+if (hue + dif > 1) {
+return (hue + dif) - 1.0;
+} else {
+return (hue + dif);
+}
+}
+
+
+kernel vec4 hsl(sampler image, __color selectedColor, float colorShift, float sense, float saturation, float lightness)
 { vec4 pixel = sample(image, samplerCoord(image));
 vec3 hslPixel = rgb2hsl(vec3(pixel.r,pixel.g,pixel.b));
 vec3 hslColor = rgb2hsl(vec3(selectedColor.r,selectedColor.g,selectedColor.b));
@@ -90,8 +107,10 @@ float h = hslPixel.r;
 float s = hslPixel.g;
 float l = hslPixel.b;
 
+float hslShift = colorShift;
 
-if (h >= 0.8 && h<= 1.0 || h < 0.1) {
+
+if (h >= leftColor(0.3,sense) && h <= rightColor(0.3,sense)) {
 h += (hslColor.r - h);
 
 s = saturation;

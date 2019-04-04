@@ -11,7 +11,7 @@ import UIKit
 import CoreImage
 import UIKit
 class MultiBandHSV: CIFilter
-{
+{ var hueShift: CGFloat = 0.0
     let multiBandHSVKernel: CIColorKernel =
     {
         let red = CGFloat(0) // UIColor(red: 0.901961, green: 0.270588, blue: 0.270588, alpha: 1).hue()
@@ -22,6 +22,8 @@ class MultiBandHSV: CIFilter
         let blue = UIColor(red: 0.270588, green: 0.270588, blue: 0.901961, alpha: 1).hue()
         let purple = UIColor(red: 0.584314, green: 0.270588, blue: 0.901961, alpha: 1).hue()
         let magenta = UIColor(red: 0.901961, green: 0.270588, blue: 0.901961, alpha: 1).hue()
+        
+       
         
         var shaderString = ""
         shaderString += "#define red \(red) \n"
