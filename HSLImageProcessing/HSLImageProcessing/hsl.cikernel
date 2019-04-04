@@ -88,8 +88,8 @@ float h = hslPixel.r;
 float s = hslPixel.g;
 float l = hslPixel.b;
 
-if (h >= 0.8 && h<= 1.0) {
-h += (0.2 - h);
+if (h >= 0.8 && h<= 1.0 || h < 0.1) {
+h += (0.6 - h);
 }
 
 /*
