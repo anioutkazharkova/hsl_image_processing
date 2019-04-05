@@ -44,6 +44,5 @@ class CustomHSLFilter:CIFilter {
         }, arguments: arguments)
     }
     
-    
 }
 

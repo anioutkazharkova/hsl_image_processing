@@ -19,6 +19,8 @@
 		635324702254FE85003E3762 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6353246F2254FE85003E3762 /* Extensions.swift */; };
 		6353247222550982003E3762 /* CustomHSVFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6353247122550982003E3762 /* CustomHSVFilter.swift */; };
 		63532474225509FF003E3762 /* hsl.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = 63532473225509FF003E3762 /* hsl.cikernel */; };
+		635324762257984F003E3762 /* hsl_custom.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = 635324752257984F003E3762 /* hsl_custom.cikernel */; };
+		6353247822579992003E3762 /* HSLFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6353247722579992003E3762 /* HSLFilter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		6353246F2254FE85003E3762 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6353247122550982003E3762 /* CustomHSVFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHSVFilter.swift; sourceTree = "<group>"; };
 		63532473225509FF003E3762 /* hsl.cikernel */ = {isa = PBXFileReference; lastKnownFileType = text; path = hsl.cikernel; sourceTree = "<group>"; };
+		635324752257984F003E3762 /* hsl_custom.cikernel */ = {isa = PBXFileReference; lastKnownFileType = text; path = hsl_custom.cikernel; sourceTree = "<group>"; };
+		6353247722579992003E3762 /* HSLFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSLFilter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,8 @@
 				6353246F2254FE85003E3762 /* Extensions.swift */,
 				6353247122550982003E3762 /* CustomHSVFilter.swift */,
 				63532473225509FF003E3762 /* hsl.cikernel */,
+				635324752257984F003E3762 /* hsl_custom.cikernel */,
+				6353247722579992003E3762 /* HSLFilter.swift */,
 			);
 			path = HSLImageProcessing;
 			sourceTree = "<group>";
@@ -144,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63532474225509FF003E3762 /* hsl.cikernel in Resources */,
+				635324762257984F003E3762 /* hsl_custom.cikernel in Resources */,
 				635324602254F63C003E3762 /* LaunchScreen.storyboard in Resources */,
 				6353246A2254F6D4003E3762 /* ImageSettingsVC.xib in Resources */,
 				6353245D2254F63C003E3762 /* Assets.xcassets in Resources */,
@@ -165,6 +172,7 @@
 				6353246C2254F876003E3762 /* SimpleFilter.swift in Sources */,
 				635324692254F6D4003E3762 /* ImageSettingsVC.swift in Sources */,
 				635324562254F63A003E3762 /* AppDelegate.swift in Sources */,
+				6353247822579992003E3762 /* HSLFilter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

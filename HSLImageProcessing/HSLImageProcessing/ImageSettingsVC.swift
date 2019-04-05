@@ -12,7 +12,7 @@ import CoreImage
 class ImageSettingsVC: UIViewController {
 
     var defaultImage: UIImage? = nil
-    var filter:MultiBandHSV? = nil
+    var filter:HSLFilter? = nil
     var queue: DispatchQueue? = nil
     
     var defaultColor = UIColor.green
@@ -32,7 +32,7 @@ class ImageSettingsVC: UIViewController {
         super.viewDidLoad()
 defaultImage = UIImage(named: "testimage")
         image?.image = defaultImage
-       filter = MultiBandHSV()
+       filter = HSLFilter()
       
     }
 
@@ -49,24 +49,27 @@ defaultImage = UIImage(named: "testimage")
                 guard let __im = _im else {
                     return
                 }
-            
+          
+             
                 
                 self.filter?.inputImage = CIImage(image:__im)
-                if let output = self.filter?.outputImage, let cg = context.createCGImage(output, from: output.extent) {
+                if let output = self.filter?.outputImage, let cg = self.context.createCGImage(output, from: output.extent) {
                  
-                        self.image?.image = UIImage(cgImage:cg)
-                
-            }
+                        let result = UIImage(cgImage:cg)
+                   
+                        self.image?.image = result
         }
-        }
+    }
+    }
+
     
     
     @IBAction func colorChanged(_ sender: Any) {
         if let slider = sender as? UISlider {
             let dif = slider.value
             let colorShift =  CGFloat(dif/360.0)
-              filter?.inputRedShift = CIVector(x: colorShift, y: 1, z: 1)
-           processImage()
+              filter?.setupFilterColor(filterColor: UIColor.red,shift: colorShift)
+       //    processImage()
         }
     }
     

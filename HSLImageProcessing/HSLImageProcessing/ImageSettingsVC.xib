@@ -24,7 +24,7 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image2" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lsa-On-LBM">
                     <rect key="frame" x="16" y="39" width="343" height="418"/>
                 </imageView>
-                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-90" maxValue="90" translatesAutoresizingMaskIntoConstraints="NO" id="m8K-VV-CuY">
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-60" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="m8K-VV-CuY">
                     <rect key="frame" x="18" y="507" width="339" height="31"/>
                     <connections>
                         <action selector="colorChanged:" destination="-1" eventType="valueChanged" id="Tij-8m-b4r"/>
