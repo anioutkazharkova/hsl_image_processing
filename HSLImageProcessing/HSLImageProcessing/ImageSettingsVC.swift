@@ -65,8 +65,8 @@ defaultImage = UIImage(named: "testimage")
         if let slider = sender as? UISlider {
             let dif = slider.value
             let colorShift =  CGFloat(dif/360.0)
-              filter?.inputRedShift = CIVector(x: colorShift, y: 1, z: 1)
-           processImage()
+              filter?.inputRedShift = CIVector(x: colorShift, y: 0, z: 1)
+          // processImage()
         }
     }
     

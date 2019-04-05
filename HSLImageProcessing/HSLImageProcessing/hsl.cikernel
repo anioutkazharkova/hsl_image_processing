@@ -113,7 +113,7 @@ float hslShift = colorShift;
 if (h >= leftColor(0.3,sense) && h <= rightColor(0.3,sense)) {
 h += (hslColor.r - h);
 
-s = saturation;
+s = s+ saturation > 2.0 ? 2.0 : s+saturation;
 l = l + lightness > 1.0 ? 1.0 : l+lightness;
 }
 

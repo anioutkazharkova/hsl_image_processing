@@ -19,6 +19,7 @@
 		635324702254FE85003E3762 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6353246F2254FE85003E3762 /* Extensions.swift */; };
 		6353247222550982003E3762 /* CustomHSVFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6353247122550982003E3762 /* CustomHSVFilter.swift */; };
 		63532474225509FF003E3762 /* hsl.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = 63532473225509FF003E3762 /* hsl.cikernel */; };
+		848E4759225722E300D2EB97 /* hsl_filter.kernel in Resources */ = {isa = PBXBuildFile; fileRef = 848E4758225722E200D2EB97 /* hsl_filter.kernel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		6353246F2254FE85003E3762 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6353247122550982003E3762 /* CustomHSVFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHSVFilter.swift; sourceTree = "<group>"; };
 		63532473225509FF003E3762 /* hsl.cikernel */ = {isa = PBXFileReference; lastKnownFileType = text; path = hsl.cikernel; sourceTree = "<group>"; };
+		848E4758225722E200D2EB97 /* hsl_filter.kernel */ = {isa = PBXFileReference; lastKnownFileType = text; name = hsl_filter.kernel; path = HSLImageProcessing/hsl_filter.kernel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +54,7 @@
 		635324492254F639003E3762 = {
 			isa = PBXGroup;
 			children = (
+				848E4758225722E200D2EB97 /* hsl_filter.kernel */,
 				635324542254F63A003E3762 /* HSLImageProcessing */,
 				635324532254F63A003E3762 /* Products */,
 			);
@@ -145,6 +148,7 @@
 			files = (
 				63532474225509FF003E3762 /* hsl.cikernel in Resources */,
 				635324602254F63C003E3762 /* LaunchScreen.storyboard in Resources */,
+				848E4759225722E300D2EB97 /* hsl_filter.kernel in Resources */,
 				6353246A2254F6D4003E3762 /* ImageSettingsVC.xib in Resources */,
 				6353245D2254F63C003E3762 /* Assets.xcassets in Resources */,
 				6353245B2254F63A003E3762 /* Main.storyboard in Resources */,
