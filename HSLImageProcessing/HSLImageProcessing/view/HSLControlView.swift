@@ -15,7 +15,25 @@ class HSLControlView: UIView {
     let hueMax:CGFloat = 360.0
     let lumDiv: CGFloat = 100.0
     
-    var selectedColor = UIColor.red
+    weak var filterListener: FilterChangedListener? {
+        didSet {
+            colorPalette?.filterListener = filterListener
+        }
+    }
+    
+    var selectedFilter: ColorFilter? = nil {
+        didSet{
+            setupSliders(color: selectedColor)
+        }
+    }
+    
+    var selectedColor:UIColor {
+        get {
+            return selectedFilter?.defaultColor.getColor() ?? UIColor.red
+        }
+    }
+    
+    var currentColor:UIColor = UIColor.red
     
     var currentHue:Float? {
         get {
@@ -43,6 +61,7 @@ class HSLControlView: UIView {
     
     @IBOutlet weak var lumSlider: GradientSlider!
     
+    @IBOutlet weak var colorPalette: ColorPaleteView!
     convenience init() {
         self.init(frame: UIScreen.main.bounds)
     }
@@ -65,7 +84,6 @@ class HSLControlView: UIView {
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         
         addSubview(view)
-        setupSliders(color: selectedColor)
     }
     
     private func loadViewFromNib() -> UIView {
@@ -77,6 +95,20 @@ class HSLControlView: UIView {
         return view
     }
     
+    func setupFilters(filters: [ColorFilter]){
+        var items = [ColorItem]()
+        for f in filters {
+            var item = ColorItem(color: f.defaultColor)
+            items.append(item)
+        }
+        items[0].isSelected = true
+        selectedFilter = filters[0]
+        colorPalette?.setupData(colors: items)
+    }
+    
+    func changeFilter(filter:ColorFilter){
+        self.selectedFilter = filter
+    }
     func setupSliders(color: UIColor) {
         hueSlider.addGradient(colors: color.createColorSet())
         satSlider.addGradient(colors: [color.cgColor,color.cgColor])
@@ -101,23 +133,26 @@ class HSLControlView: UIView {
     
     func colorChanged() {
         if let hue = currentHue, let sat = currentSat, let lum = currentLum {
+            selectedFilter?.selectedHue = CGFloat(hue)
+            selectedFilter?.selectedSat = CGFloat(sat)
+            selectedFilter?.selectedLum = CGFloat(lum)
           listener?.colorChanged(hue: CGFloat(hue)/hueMax, sat: CGFloat(sat), lum: CGFloat(lum)/lumDiv)
         }
     }
     
     func resetForHue() {
         if let hue = currentHue, let lum = currentLum {
-            let newColor = selectedColor.hslColor(hue: selectedColor.normalizeHue(shift: CGFloat(hue)/hueMax),sat: 1, lum: CGFloat(lum)/lumDiv)
-            satSlider.addGradient(colors: [newColor.cgColor,newColor.cgColor])
-            lumSlider.addGradient(colors: newColor.colorWithLum(lum: selectedColor.hsl!.lightness).createLumSet())
+            currentColor = selectedColor.hslColor(hue: selectedColor.normalizeHue(shift: CGFloat(hue)/hueMax),sat: 1, lum: CGFloat(lum)/lumDiv)
+            satSlider.addGradient(colors: [currentColor.cgColor,currentColor.cgColor])
+            lumSlider.addGradient(colors: currentColor.colorWithLum(lum: selectedColor.hsl!.lightness).createLumSet())
         }
     }
     
     func resetForLum() {
         if let hue = currentHue, let lum = currentLum {
-            let newColor = selectedColor.hslColor(hue: selectedColor.normalizeHue(shift: CGFloat(hue)/hueMax), sat: 1, lum: CGFloat(lum)/lumDiv)
-            hueSlider.addGradient(colors: newColor.createColorSet())
-            satSlider.addGradient(colors: [newColor.cgColor,newColor.cgColor])
+            currentColor = selectedColor.hslColor(hue: selectedColor.normalizeHue(shift: CGFloat(hue)/hueMax), sat: 1, lum: CGFloat(lum)/lumDiv)
+            hueSlider.addGradient(colors: currentColor.createColorSet())
+            satSlider.addGradient(colors: [currentColor.cgColor,currentColor.cgColor])
             
         }
     }
@@ -127,6 +162,11 @@ class HSLControlView: UIView {
     }
 }
 
+
 protocol HSLListener : class {
     func colorChanged(hue: CGFloat,sat: CGFloat, lum : CGFloat)
+}
+
+protocol FilterChangedListener : class {
+    func filterItemChanged(index: Int)
 }

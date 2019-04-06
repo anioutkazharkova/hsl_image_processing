@@ -8,58 +8,60 @@
 
 /* Begin PBXBuildFile section */
 		635324562254F63A003E3762 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635324552254F63A003E3762 /* AppDelegate.swift */; };
-		635324582254F63A003E3762 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635324572254F63A003E3762 /* ViewController.swift */; };
 		6353245B2254F63A003E3762 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 635324592254F63A003E3762 /* Main.storyboard */; };
 		6353245D2254F63C003E3762 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6353245C2254F63C003E3762 /* Assets.xcassets */; };
 		635324602254F63C003E3762 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6353245E2254F63C003E3762 /* LaunchScreen.storyboard */; };
 		635324692254F6D4003E3762 /* ImageSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635324672254F6D4003E3762 /* ImageSettingsVC.swift */; };
 		6353246A2254F6D4003E3762 /* ImageSettingsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 635324682254F6D4003E3762 /* ImageSettingsVC.xib */; };
-		6353246C2254F876003E3762 /* SimpleFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6353246B2254F876003E3762 /* SimpleFilter.swift */; };
-		6353246E2254FE17003E3762 /* HSVFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6353246D2254FE17003E3762 /* HSVFilter.swift */; };
 		635324702254FE85003E3762 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6353246F2254FE85003E3762 /* Extensions.swift */; };
-		6353247222550982003E3762 /* CustomHSVFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6353247122550982003E3762 /* CustomHSVFilter.swift */; };
-		63532474225509FF003E3762 /* hsl.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = 63532473225509FF003E3762 /* hsl.cikernel */; };
-		635324762257984F003E3762 /* hsl_custom.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = 635324752257984F003E3762 /* hsl_custom.cikernel */; };
-		6353247822579992003E3762 /* HSLFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6353247722579992003E3762 /* HSLFilter.swift */; };
 		6353247C2258A717003E3762 /* hsv_filter.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = 6353247B2258A717003E3762 /* hsv_filter.cikernel */; };
 		6353247E2258A9A4003E3762 /* AdvHSLFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6353247D2258A9A4003E3762 /* AdvHSLFilter.swift */; };
 		635324802258AC95003E3762 /* ColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6353247F2258AC95003E3762 /* ColorHelper.swift */; };
 		635324832258BDAA003E3762 /* FilteredImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635324822258BDAA003E3762 /* FilteredImageHelper.swift */; };
-		635324852258D5E0003E3762 /* ZoomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635324842258D5E0003E3762 /* ZoomImageView.swift */; };
-		635324872258D619003E3762 /* ZoomImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 635324862258D619003E3762 /* ZoomImageView.xib */; };
 		635324892258DD4D003E3762 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635324882258DD4D003E3762 /* ImageScrollView.swift */; };
 		6353248B2258E29F003E3762 /* GradientSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6353248A2258E29F003E3762 /* GradientSlider.swift */; };
 		6353248D2258F885003E3762 /* HSLControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6353248C2258F885003E3762 /* HSLControlView.swift */; };
 		6353248F2258F8AE003E3762 /* HSLControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6353248E2258F8AE003E3762 /* HSLControlView.xib */; };
+		635324922259197E003E3762 /* ColorFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635324912259197E003E3762 /* ColorFilter.swift */; };
+		6353249622591B95003E3762 /* ColorRoundButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6353249522591B95003E3762 /* ColorRoundButton.xib */; };
+		6353249822591BA4003E3762 /* RoundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6353249722591BA4003E3762 /* RoundImage.swift */; };
+		6353249A22591EE0003E3762 /* ColorRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6353249922591EE0003E3762 /* ColorRoundButton.swift */; };
+		6353249C22592351003E3762 /* ColorPaleteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6353249B22592351003E3762 /* ColorPaleteView.xib */; };
+		6353249E22592392003E3762 /* ColorItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6353249D22592392003E3762 /* ColorItem.swift */; };
+		635324A7225925FF003E3762 /* ColorPaleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635324A6225925FF003E3762 /* ColorPaleteView.swift */; };
+		635324AA2259265E003E3762 /* ColorAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635324A92259265E003E3762 /* ColorAdapter.swift */; };
+		635324AD2259270E003E3762 /* ColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635324AB2259270E003E3762 /* ColorCell.swift */; };
+		635324AE2259270E003E3762 /* ColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 635324AC2259270E003E3762 /* ColorCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		635324522254F63A003E3762 /* HSLImageProcessing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HSLImageProcessing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		635324552254F63A003E3762 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		635324572254F63A003E3762 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6353245A2254F63A003E3762 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6353245C2254F63C003E3762 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6353245F2254F63C003E3762 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		635324612254F63C003E3762 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		635324672254F6D4003E3762 /* ImageSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSettingsVC.swift; sourceTree = "<group>"; };
 		635324682254F6D4003E3762 /* ImageSettingsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageSettingsVC.xib; sourceTree = "<group>"; };
-		6353246B2254F876003E3762 /* SimpleFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleFilter.swift; sourceTree = "<group>"; };
-		6353246D2254FE17003E3762 /* HSVFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSVFilter.swift; sourceTree = "<group>"; };
 		6353246F2254FE85003E3762 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		6353247122550982003E3762 /* CustomHSVFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHSVFilter.swift; sourceTree = "<group>"; };
-		63532473225509FF003E3762 /* hsl.cikernel */ = {isa = PBXFileReference; lastKnownFileType = text; path = hsl.cikernel; sourceTree = "<group>"; };
-		635324752257984F003E3762 /* hsl_custom.cikernel */ = {isa = PBXFileReference; lastKnownFileType = text; path = hsl_custom.cikernel; sourceTree = "<group>"; };
-		6353247722579992003E3762 /* HSLFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSLFilter.swift; sourceTree = "<group>"; };
 		6353247B2258A717003E3762 /* hsv_filter.cikernel */ = {isa = PBXFileReference; lastKnownFileType = text; path = hsv_filter.cikernel; sourceTree = "<group>"; };
 		6353247D2258A9A4003E3762 /* AdvHSLFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvHSLFilter.swift; sourceTree = "<group>"; };
 		6353247F2258AC95003E3762 /* ColorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHelper.swift; sourceTree = "<group>"; };
 		635324822258BDAA003E3762 /* FilteredImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredImageHelper.swift; sourceTree = "<group>"; };
-		635324842258D5E0003E3762 /* ZoomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomImageView.swift; sourceTree = "<group>"; };
-		635324862258D619003E3762 /* ZoomImageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZoomImageView.xib; sourceTree = "<group>"; };
 		635324882258DD4D003E3762 /* ImageScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
 		6353248A2258E29F003E3762 /* GradientSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientSlider.swift; sourceTree = "<group>"; };
 		6353248C2258F885003E3762 /* HSLControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSLControlView.swift; sourceTree = "<group>"; };
 		6353248E2258F8AE003E3762 /* HSLControlView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HSLControlView.xib; sourceTree = "<group>"; };
+		635324912259197E003E3762 /* ColorFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorFilter.swift; sourceTree = "<group>"; };
+		6353249522591B95003E3762 /* ColorRoundButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorRoundButton.xib; sourceTree = "<group>"; };
+		6353249722591BA4003E3762 /* RoundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundImage.swift; sourceTree = "<group>"; };
+		6353249922591EE0003E3762 /* ColorRoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorRoundButton.swift; sourceTree = "<group>"; };
+		6353249B22592351003E3762 /* ColorPaleteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorPaleteView.xib; sourceTree = "<group>"; };
+		6353249D22592392003E3762 /* ColorItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorItem.swift; sourceTree = "<group>"; };
+		635324A6225925FF003E3762 /* ColorPaleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPaleteView.swift; sourceTree = "<group>"; };
+		635324A92259265E003E3762 /* ColorAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorAdapter.swift; sourceTree = "<group>"; };
+		635324AB2259270E003E3762 /* ColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
+		635324AC2259270E003E3762 /* ColorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,33 +94,74 @@
 		635324542254F63A003E3762 /* HSLImageProcessing */ = {
 			isa = PBXGroup;
 			children = (
+				635324A822592648003E3762 /* adapter */,
+				6353249322591B5C003E3762 /* view */,
+				6353249022591936003E3762 /* model */,
 				635324552254F63A003E3762 /* AppDelegate.swift */,
-				635324572254F63A003E3762 /* ViewController.swift */,
 				635324592254F63A003E3762 /* Main.storyboard */,
 				6353245C2254F63C003E3762 /* Assets.xcassets */,
 				6353245E2254F63C003E3762 /* LaunchScreen.storyboard */,
 				635324612254F63C003E3762 /* Info.plist */,
 				635324672254F6D4003E3762 /* ImageSettingsVC.swift */,
 				635324682254F6D4003E3762 /* ImageSettingsVC.xib */,
-				6353246B2254F876003E3762 /* SimpleFilter.swift */,
-				6353246D2254FE17003E3762 /* HSVFilter.swift */,
 				6353246F2254FE85003E3762 /* Extensions.swift */,
-				6353247122550982003E3762 /* CustomHSVFilter.swift */,
-				63532473225509FF003E3762 /* hsl.cikernel */,
-				635324752257984F003E3762 /* hsl_custom.cikernel */,
-				6353247722579992003E3762 /* HSLFilter.swift */,
 				6353247B2258A717003E3762 /* hsv_filter.cikernel */,
 				6353247D2258A9A4003E3762 /* AdvHSLFilter.swift */,
 				6353247F2258AC95003E3762 /* ColorHelper.swift */,
 				635324822258BDAA003E3762 /* FilteredImageHelper.swift */,
-				635324842258D5E0003E3762 /* ZoomImageView.swift */,
-				635324862258D619003E3762 /* ZoomImageView.xib */,
+			);
+			path = HSLImageProcessing;
+			sourceTree = "<group>";
+		};
+		6353249022591936003E3762 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				635324912259197E003E3762 /* ColorFilter.swift */,
+				6353249D22592392003E3762 /* ColorItem.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		6353249322591B5C003E3762 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				6353249F225923E8003E3762 /* cell */,
+				6353249422591B6D003E3762 /* colorbutton */,
 				635324882258DD4D003E3762 /* ImageScrollView.swift */,
 				6353248A2258E29F003E3762 /* GradientSlider.swift */,
 				6353248C2258F885003E3762 /* HSLControlView.swift */,
 				6353248E2258F8AE003E3762 /* HSLControlView.xib */,
+				6353249B22592351003E3762 /* ColorPaleteView.xib */,
+				635324A6225925FF003E3762 /* ColorPaleteView.swift */,
 			);
-			path = HSLImageProcessing;
+			path = view;
+			sourceTree = "<group>";
+		};
+		6353249422591B6D003E3762 /* colorbutton */ = {
+			isa = PBXGroup;
+			children = (
+				6353249522591B95003E3762 /* ColorRoundButton.xib */,
+				6353249722591BA4003E3762 /* RoundImage.swift */,
+				6353249922591EE0003E3762 /* ColorRoundButton.swift */,
+			);
+			path = colorbutton;
+			sourceTree = "<group>";
+		};
+		6353249F225923E8003E3762 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				635324AB2259270E003E3762 /* ColorCell.swift */,
+				635324AC2259270E003E3762 /* ColorCell.xib */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		635324A822592648003E3762 /* adapter */ = {
+			isa = PBXGroup;
+			children = (
+				635324A92259265E003E3762 /* ColorAdapter.swift */,
+			);
+			path = adapter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,13 +222,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63532474225509FF003E3762 /* hsl.cikernel in Resources */,
-				635324762257984F003E3762 /* hsl_custom.cikernel in Resources */,
+				6353249622591B95003E3762 /* ColorRoundButton.xib in Resources */,
+				6353249C22592351003E3762 /* ColorPaleteView.xib in Resources */,
 				6353248F2258F8AE003E3762 /* HSLControlView.xib in Resources */,
+				635324AE2259270E003E3762 /* ColorCell.xib in Resources */,
 				635324602254F63C003E3762 /* LaunchScreen.storyboard in Resources */,
 				6353246A2254F6D4003E3762 /* ImageSettingsVC.xib in Resources */,
 				6353245D2254F63C003E3762 /* Assets.xcassets in Resources */,
-				635324872258D619003E3762 /* ZoomImageView.xib in Resources */,
 				6353245B2254F63A003E3762 /* Main.storyboard in Resources */,
 				6353247C2258A717003E3762 /* hsv_filter.cikernel in Resources */,
 			);
@@ -198,21 +241,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6353246E2254FE17003E3762 /* HSVFilter.swift in Sources */,
-				635324852258D5E0003E3762 /* ZoomImageView.swift in Sources */,
 				635324892258DD4D003E3762 /* ImageScrollView.swift in Sources */,
+				635324922259197E003E3762 /* ColorFilter.swift in Sources */,
 				635324802258AC95003E3762 /* ColorHelper.swift in Sources */,
+				6353249822591BA4003E3762 /* RoundImage.swift in Sources */,
+				6353249A22591EE0003E3762 /* ColorRoundButton.swift in Sources */,
 				635324832258BDAA003E3762 /* FilteredImageHelper.swift in Sources */,
 				635324702254FE85003E3762 /* Extensions.swift in Sources */,
 				6353248B2258E29F003E3762 /* GradientSlider.swift in Sources */,
-				635324582254F63A003E3762 /* ViewController.swift in Sources */,
-				6353247222550982003E3762 /* CustomHSVFilter.swift in Sources */,
 				6353247E2258A9A4003E3762 /* AdvHSLFilter.swift in Sources */,
+				635324AD2259270E003E3762 /* ColorCell.swift in Sources */,
+				6353249E22592392003E3762 /* ColorItem.swift in Sources */,
 				6353248D2258F885003E3762 /* HSLControlView.swift in Sources */,
-				6353246C2254F876003E3762 /* SimpleFilter.swift in Sources */,
+				635324A7225925FF003E3762 /* ColorPaleteView.swift in Sources */,
+				635324AA2259265E003E3762 /* ColorAdapter.swift in Sources */,
 				635324692254F6D4003E3762 /* ImageSettingsVC.swift in Sources */,
 				635324562254F63A003E3762 /* AppDelegate.swift in Sources */,
-				6353247822579992003E3762 /* HSLFilter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

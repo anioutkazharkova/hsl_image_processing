@@ -10,14 +10,6 @@ import CoreImage
 import UIKit
 
 class AdvHSLFilter: CIFilter {
-      private let red = CGFloat(0) // UIColor(red: 0.901961, green: 0.270588, blue: 0.270588, alpha: 1).hue()
-      private let orange = UIColor(red: 0.901961, green: 0.584314, blue: 0.270588, alpha: 1).hue()
-      private let yellow = UIColor(red: 0.901961, green: 0.901961, blue: 0.270588, alpha: 1).hue()
-      private let green = UIColor(red: 0.270588, green: 0.901961, blue: 0.270588, alpha: 1).hue()
-      private let aqua = UIColor(red: 0.270588, green: 0.901961, blue: 0.901961, alpha: 1).hue()
-      private let blue = UIColor(red: 0.270588, green: 0.270588, blue: 0.901961, alpha: 1).hue()
-      private let purple = UIColor(red: 0.584314, green: 0.270588, blue: 0.901961, alpha: 1).hue()
-      private let magenta = UIColor(red: 0.901961, green: 0.270588, blue: 0.901961, alpha: 1).hue()
     
     var sense: CGFloat = 0.15
     

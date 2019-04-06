@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HSLControlView" customModule="HSLImageProcessing" customModuleProvider="target">
             <connections>
+                <outlet property="colorPalette" destination="wCh-zj-A2D" id="wjn-LK-aL9"/>
                 <outlet property="hueSlider" destination="HcZ-x8-jYb" id="9bT-dc-ZV1"/>
                 <outlet property="lumSlider" destination="K7U-n5-pWB" id="oDw-xI-S9F"/>
                 <outlet property="satSlider" destination="ZYi-gT-0Lp" id="amq-ws-vpP"/>
@@ -58,11 +59,19 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wCh-zj-A2D" customClass="ColorPaleteView" customModule="HSLImageProcessing" customModuleProvider="target">
+                    <rect key="frame" x="20" y="185" width="335" height="40"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="EuE-yB-NvK"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
             <constraints>
                 <constraint firstItem="wRj-xo-TpF" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="30" id="4t7-Z0-TyP"/>
                 <constraint firstItem="HcZ-x8-jYb" firstAttribute="leading" secondItem="wRj-xo-TpF" secondAttribute="trailing" constant="20" id="9qs-06-t92"/>
+                <constraint firstItem="wCh-zj-A2D" firstAttribute="top" secondItem="K7U-n5-pWB" secondAttribute="bottom" constant="30" id="D8i-Up-0fp"/>
                 <constraint firstItem="LSH-MW-eT2" firstAttribute="top" secondItem="7wL-ic-fyt" secondAttribute="bottom" constant="25" id="I6W-gl-cOa"/>
                 <constraint firstItem="7wL-ic-fyt" firstAttribute="leading" secondItem="wRj-xo-TpF" secondAttribute="leading" id="Ir7-gj-0K5"/>
                 <constraint firstItem="7wL-ic-fyt" firstAttribute="top" secondItem="wRj-xo-TpF" secondAttribute="bottom" constant="25" id="JB2-Jy-wKs"/>
@@ -71,9 +80,11 @@
                 <constraint firstItem="HcZ-x8-jYb" firstAttribute="centerY" secondItem="wRj-xo-TpF" secondAttribute="centerY" id="aNb-XY-coV"/>
                 <constraint firstItem="K7U-n5-pWB" firstAttribute="centerY" secondItem="LSH-MW-eT2" secondAttribute="centerY" id="c4o-AQ-u4i"/>
                 <constraint firstItem="LSH-MW-eT2" firstAttribute="leading" secondItem="wRj-xo-TpF" secondAttribute="leading" id="cDk-4Q-lxP"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="wCh-zj-A2D" secondAttribute="trailing" constant="20" id="dDj-uI-WBv"/>
                 <constraint firstItem="ZYi-gT-0Lp" firstAttribute="centerY" secondItem="7wL-ic-fyt" secondAttribute="centerY" id="eZc-Ry-LCp"/>
                 <constraint firstItem="wRj-xo-TpF" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="f9L-et-dJR"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="HcZ-x8-jYb" secondAttribute="trailing" constant="20" id="psc-eo-y1O"/>
+                <constraint firstItem="wCh-zj-A2D" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="vso-o1-eV3"/>
                 <constraint firstItem="ZYi-gT-0Lp" firstAttribute="leading" secondItem="7wL-ic-fyt" secondAttribute="trailing" constant="20" id="yBq-Uf-Vvh"/>
                 <constraint firstItem="K7U-n5-pWB" firstAttribute="trailing" secondItem="ZYi-gT-0Lp" secondAttribute="trailing" id="ySC-RG-rRT"/>
             </constraints>

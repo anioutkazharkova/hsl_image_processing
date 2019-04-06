@@ -13,25 +13,21 @@ class ImageSettingsVC: UIViewController{
    
 
     var defaultImage: UIImage? = nil
-    var filter:AdvHSLFilter? = nil
     let queue = DispatchQueue(label: "image_queue",qos: .userInteractive)
     var imageItem: DispatchWorkItem? = nil
     
-    var colorShift:CGFloat = 0.0
-    var defaultColor = UIColor.green
-    var _context: CIContext? = nil
+    var filters:[ColorFilter] = [ColorFilter(color: .red),
+                                 ColorFilter(color: .yellow),
+                                 ColorFilter(color: .green),
+                                 ColorFilter(color:  .purple),
+                                 ColorFilter(color: .blue),
+                                 ColorFilter(color: .aqua)
+                                 ]
     
     @IBOutlet weak var imageView: ImageScrollView?
     
     @IBOutlet weak var hslControl: HSLControlView!
-    var context: CIContext {
-        if (_context == nil) {
-         if  let openGLContext = EAGLContext(api: .openGLES3) {
-            _context = CIContext(eaglContext: openGLContext)
-    }
-        }
-        return _context!
-    }
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,18 +37,19 @@ defaultImage = UIImage(named: "image2")
         imageView?.imageContentMode = .aspectFit
         imageView?.initialOffset = .center
     imageView?.display(image: defaultImage!)
-        
-   // hueSlider.addGradient(colors: UIColor.red.createColorSet())
+        hslControl?.setupFilters(filters: filters)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         hslControl?.listener = self
+        hslControl?.filterListener = self
         imageView?.imageScrollViewDelegate = self
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         hslControl?.listener = nil
+        hslControl?.filterListener = nil
         imageView?.imageScrollViewDelegate = nil
         super.viewWillDisappear(animated)
     }
@@ -77,8 +74,12 @@ defaultImage = UIImage(named: "image2")
             }
         }
     }
+}
 
-    
+extension ImageSettingsVC : FilterChangedListener {
+    func filterItemChanged(index: Int) {
+        hslControl?.changeFilter(filter:filters[index])
+    }
 }
 
 extension ImageSettingsVC : HSLListener {

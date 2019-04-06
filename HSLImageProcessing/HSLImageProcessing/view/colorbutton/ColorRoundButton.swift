@@ -1,31 +1,33 @@
 //
-//  ZoomImageView.swift
+//  ColorRoundButton.swift
 //  HSLImageProcessing
 //
-//  Created by 1 on 06.04.2019.
+//  Created by 1 on 07.04.2019.
 //  Copyright © 2019 azharkova. All rights reserved.
 //
 
 import UIKit
 
-class ZoomImageView: UIView {
+class ColorRoundButton: UIView {
+
+    private var frameWidth: CGFloat = 2.0
     
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var circle: RoundImage!
+    @IBOutlet weak var frameView: RoundImage!
     
-    @IBOutlet weak var imageView: UIImageView!
-    
-    var image: UIImage? {
-        get {
-            return imageView?.image
-        }
-        set {
-            imageView?.image = newValue
+    var isSelected: Bool = false {
+        didSet(value){
+            frameView.isHidden = !value
         }
     }
     
-    convenience init() {
-        self.init(frame: UIScreen.main.bounds)
+    var color: UIColor = UIColor.clear{
+        didSet(value){
+            circle.backgroundColor = color
+            frameView.setupAsFrame(color: color, width: frameWidth)
+        }
     }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         initContent()
@@ -45,23 +47,15 @@ class ZoomImageView: UIView {
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         
         addSubview(view)
-        scrollView.zoomScale = 1.0
-        scrollView.delegate = self
     }
     
     private func loadViewFromNib() -> UIView {
         
-        let bundle = Bundle(for: ZoomImageView.self)
-        let nib = UINib(nibName: "ZoomImageView", bundle: bundle)
+        let bundle = Bundle(for: ColorRoundButton.self)
+        let nib = UINib(nibName: "ColorRoundButton", bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         
         return view
     }
     
-}
-
-extension ZoomImageView : UIScrollViewDelegate {
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return self.imageView
-    }
 }
