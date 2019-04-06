@@ -15,10 +15,10 @@
  return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
    }
 
-   vec3 smoothTreatment(vec3 hsv, float leftHue, float rightHue)
+   vec3 smoothTreatment(vec3 hsv, float leftHue, float rightHue,float leftEdge, float rightEdge)
    {
     float smoothedHue = smoothstep(leftHue, rightHue, hsv.x);
-    float hue = hsv.x + (leftHue + ((rightHue - leftHue) * smoothedHue));
+    float hue = hsv.x + (leftHue + ((rightEdge - leftEdge) * smoothedHue));
 float sat = hsv.y; //(leftEdge.y + ((rightEdge.y - leftEdge.y) * smoothedHue));
 float lum = hsv.z; //(leftEdge.z + ((rightEdge.z - leftEdge.z) * smoothedHue));
     return vec3(hue, sat, lum);
@@ -29,34 +29,16 @@ float lum = hsv.z; //(leftEdge.z + ((rightEdge.z - leftEdge.z) * smoothedHue));
 kernel vec4 kernelFunc(__sample pixel, float hue, float leftHue, float rightHue, float shift, float sense) {
  vec3 hsv = rgb2hsv(pixel.rgb);
 float currentHue = hsv.x;
-
-if (((leftHue < rightHue && currentHue >= leftHue && currentHue <= rightHue)) || (leftHue>= rightHue && (( currentHue >= leftHue && currentHue <=1.0) || (currentHue >=0.0 && currentHue <= rightHue)))) {
+if ((currentHue >= (hue - sense) && currentHue <= hue) || (currentHue >= hue && currentHue <= (hue + sense))){
 if (shift < 0) {
-hsv = smoothTreatment(hsv, rightHue,leftHue);
-} else {
-hsv = smoothTreatment(hsv, leftHue, rightHue);
+
+hsv = smoothTreatment(hsv, leftHue,rightHue,0.0,shift);
+} else  {
+hsv = smoothTreatment(hsv, leftHue, rightHue,shift,0.0);
 }
 }
 
-/*if (hue - sense < 0) {
-if (currentHue >= 0 && currentHue <= hue || currentHue <= 1 && currentHue >= 1.0 + (hue - sense)){
-hsv = smoothTreatment(hsv, leftHue, rightHue);
-}
-} else {
-if (currentHue>= (hue - sense) && currentHue <= hue) {
-hsv = smoothTreatment(hsv, leftHue, rightHue);
-}
-}
-if (hue + sense > 1.0 ) {
-if (currentHue >= 0 && currentHue <= (1.0 - (hue + sense)) || currentHue <= 1 && currentHue >= hue){
-hsv = smoothTreatment(hsv, leftHue, rightHue);
-}
-}
-else {
-if (currentHue >= hue && currentHue<= (hue + sense)) {
-hsv = smoothTreatment(hsv, leftHue, rightHue);
-}
-}*/
+
 
  return vec4(hsv2rgb(hsv), 1.0);
 }

@@ -68,7 +68,7 @@ defaultImage = UIImage(named: "testimage")
         if let slider = sender as? UISlider {
             let dif = slider.value
             let colorShift =  CGFloat(dif/360.0)
-              filter?.setupFilterColor(filterColor: UIColor.red,shift: colorShift)
+              filter?.setupFilterColor(filterColor: UIColor.green,shift: colorShift)
        //    processImage()
         }
     }

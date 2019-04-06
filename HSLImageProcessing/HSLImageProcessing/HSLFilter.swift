@@ -30,6 +30,7 @@ class HSLFilter: CIFilter {
         let extent = inputImage.extent
         let currentLeftColor = shift < 0 ? leftColor : filterColor
         let currentRightColor = shift > 0 ? rightColor : filterColor
+        let shiftedColor = filterColor + shift
         let arguments = [inputImage,filterColor as Any, currentLeftColor as Any,currentRightColor as Any,
                          shift as Any,
                          sense as Any]
@@ -41,7 +42,7 @@ class HSLFilter: CIFilter {
     }
     
     func setupFilterColor(filterColor: UIColor, shift: CGFloat = 0) {
-        self.filterColor = filterColor.hue() + shift
+        self.filterColor = filterColor.hue()
         self.shift = shift
         leftColor = (filterColor.hue() - dif) < 0 ? 1.0 + (filterColor.hue() - dif) : (filterColor.hue() - dif)
         rightColor = (filterColor.hue() + dif) > 1.0 ? (filterColor.hue() + dif) - 1.0 : (filterColor.hue() + dif)
