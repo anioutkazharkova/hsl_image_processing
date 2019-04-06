@@ -18,23 +18,36 @@
    vec3 smoothTreatment(vec3 hsv, float leftHue, float rightHue,float leftEdge, float rightEdge)
    {
     float smoothedHue = smoothstep(leftHue, rightHue, hsv.x);
-    float hue = hsv.x + (leftHue + ((rightEdge - leftEdge) * smoothedHue));
+    float hue = hsv.x + (leftEdge + ((rightEdge - leftEdge) * smoothedHue));
 float sat = hsv.y; //(leftEdge.y + ((rightEdge.y - leftEdge.y) * smoothedHue));
 float lum = hsv.z; //(leftEdge.z + ((rightEdge.z - leftEdge.z) * smoothedHue));
     return vec3(hue, sat, lum);
    }
+
+bool colorContained(float hue, float dif,float currentHue){
+if (hue - dif < 0)
+{
+return ((currentHue >= 0 && currentHue < hue) || (currentHue >= 1.0 + (hue - dif) && currentHue <= 1));
+}
+if (hue + dif > 1.0) {
+return ((currentHue >= hue && currentHue <= 1.0) || (currentHue >= 0.0 && currentHue < (hue + dif) - 1.0));
+}
+return ((currentHue >= (hue - dif)) && (currentHue < (hue + dif)));
+}
+
+
 
 
 
 kernel vec4 kernelFunc(__sample pixel, float hue, float leftHue, float rightHue, float shift, float sense) {
  vec3 hsv = rgb2hsv(pixel.rgb);
 float currentHue = hsv.x;
-if ((currentHue >= (hue - sense) && currentHue <= hue) || (currentHue >= hue && currentHue <= (hue + sense))){
+if (colorContained(hue,sense,currentHue)){
 if (shift < 0) {
 
 hsv = smoothTreatment(hsv, leftHue,rightHue,0.0,shift);
 } else  {
-hsv = smoothTreatment(hsv, leftHue, rightHue,shift,0.0);
+hsv = smoothTreatment(hsv, leftHue, rightHue <= 0 ? 1.0 : rightHue,shift,0.0);
 }
 }
 

@@ -9,15 +9,20 @@
 import UIKit
 import CoreImage
 
-class ImageSettingsVC: UIViewController {
+class ImageSettingsVC: UIViewController{
+   
 
     var defaultImage: UIImage? = nil
-    var filter:HSLFilter? = nil
-    var queue: DispatchQueue? = nil
+    var filter:AdvHSLFilter? = nil
+    let queue = DispatchQueue(label: "image_queue",qos: .userInteractive)
+    var imageItem: DispatchWorkItem? = nil
     
+    var colorShift:CGFloat = 0.0
     var defaultColor = UIColor.green
-    @IBOutlet weak var image: UIImageView!
     var _context: CIContext? = nil
+    
+    @IBOutlet weak var hueSlider: GradientSlider!
+    @IBOutlet weak var imageView: ImageScrollView?
     
     var context: CIContext {
         if (_context == nil) {
@@ -30,11 +35,17 @@ class ImageSettingsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-defaultImage = UIImage(named: "testimage")
-        image?.image = defaultImage
-       filter = HSLFilter()
-      
+defaultImage = UIImage(named: "image2")
+        imageView?.setup()
+        imageView?.imageScrollViewDelegate = self
+        imageView?.imageContentMode = .aspectFit
+        imageView?.initialOffset = .center
+    imageView?.display(image: defaultImage!)
+        
+   // hueSlider.addGradient(colors: UIColor.red.createColorSet())
     }
+    
+   
 
     @IBAction func processImageByClick(_ sender: Any) {
     processImage()
@@ -42,24 +53,23 @@ defaultImage = UIImage(named: "testimage")
         }
     
     func processImage() {
-      
-        if let im = defaultImage {
-            weak var _im = im
-           
-                guard let __im = _im else {
-                    return
-                }
-          
-             
-                
-                self.filter?.inputImage = CIImage(image:__im)
-                if let output = self.filter?.outputImage, let cg = self.context.createCGImage(output, from: output.extent) {
-                 
-                        let result = UIImage(cgImage:cg)
-                   
-                        self.image?.image = result
+        if (imageItem != nil) {
+            imageItem?.cancel()
         }
-    }
+        
+        imageItem = DispatchWorkItem { [weak self]  in
+            if let im = self?.defaultImage, let output = FilteredImageHelper.applyFilter(image: im, color: .red, shift: Float(self?.colorShift ?? 0), saturation: 0, lum: 0) {
+                DispatchQueue.main.async {
+                self?.imageView?.display(image: output)
+                }
+            }
+        }
+        if let item = imageItem {
+        queue.async(execute: item)
+            item.notify(queue: DispatchQueue.main){ [weak self] in
+                self?.imageItem = nil
+            }
+        }
     }
 
     
@@ -67,10 +77,16 @@ defaultImage = UIImage(named: "testimage")
     @IBAction func colorChanged(_ sender: Any) {
         if let slider = sender as? UISlider {
             let dif = slider.value
-            let colorShift =  CGFloat(dif/360.0)
-              filter?.setupFilterColor(filterColor: UIColor.green,shift: colorShift)
-       //    processImage()
+             colorShift =  CGFloat(dif/360.0)
+            processImage()
         }
+    }
+    
+}
+
+extension ImageSettingsVC : ImageScrollViewDelegate {
+    func imageScrollViewDidChangeOrientation(imageScrollView: ImageScrollView) {
+        
     }
     
 }

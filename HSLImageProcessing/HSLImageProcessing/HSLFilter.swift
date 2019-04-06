@@ -30,7 +30,6 @@ class HSLFilter: CIFilter {
         let extent = inputImage.extent
         let currentLeftColor = shift < 0 ? leftColor : filterColor
         let currentRightColor = shift > 0 ? rightColor : filterColor
-        let shiftedColor = filterColor + shift
         let arguments = [inputImage,filterColor as Any, currentLeftColor as Any,currentRightColor as Any,
                          shift as Any,
                          sense as Any]
