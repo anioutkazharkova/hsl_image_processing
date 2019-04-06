@@ -24,6 +24,7 @@ class HSLControlView: UIView {
     var selectedFilter: ColorFilter? = nil {
         didSet{
             setupSliders(color: selectedColor)
+            listener?.colorChanged(color: selectedFilter?.defaultColor ?? .red, hue: selectedFilter?.selectedHue ?? 0, sat: selectedFilter?.selectedSat ?? 0, lum: selectedFilter?.selectedLum ?? 0)
         }
     }
     
@@ -107,6 +108,11 @@ class HSLControlView: UIView {
     }
     
     func changeFilter(filter:ColorFilter){
+        if let hue = currentHue, let sat = currentSat, let lum = currentLum {
+            selectedFilter?.selectedHue = CGFloat(hue)
+            selectedFilter?.selectedSat = CGFloat(sat)
+            selectedFilter?.selectedLum = CGFloat(lum)
+        }
         self.selectedFilter = filter
     }
     func setupSliders(color: UIColor) {
@@ -115,7 +121,7 @@ class HSLControlView: UIView {
         lumSlider.addGradient(colors: color.createLumSet())
         hueSlider?.value = Float(selectedFilter?.selectedHue ?? 0)
         satSlider?.value = Float(selectedFilter?.selectedSat ?? 1)
-        lumSlider?.value = Float(selectedFilter?.selectedLum ?? 0.5)
+     //   lumSlider?.value = Float(selectedFilter?.selectedLum ?? 0.5)*Float(lumDiv)
     }
     
     
