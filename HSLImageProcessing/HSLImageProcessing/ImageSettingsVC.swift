@@ -55,13 +55,13 @@ defaultImage = UIImage(named: "image2")
     }
     
     
-    func processImage(hue: CGFloat, sat: CGFloat, lum: CGFloat) {
+    func processImage(color: Colors, hue: CGFloat, sat: CGFloat, lum: CGFloat) {
         if (imageItem != nil) {
             imageItem?.cancel()
         }
         
         imageItem = DispatchWorkItem { [weak self]  in
-            if let im = self?.defaultImage, let output = FilteredImageHelper.applyFilter(image: im, color: .red, hueShift: hue, saturation: sat, lum: lum) {
+            if let im = self?.defaultImage, let output = FilteredImageHelper.applyFilter(image: im, color: color, hueShift: hue, saturation: sat, lum: lum) {
                 DispatchQueue.main.async {
                 self?.imageView?.display(image: output)
                 }
@@ -83,8 +83,8 @@ extension ImageSettingsVC : FilterChangedListener {
 }
 
 extension ImageSettingsVC : HSLListener {
-    func colorChanged(hue: CGFloat, sat: CGFloat, lum: CGFloat) {
-        processImage(hue: hue, sat: sat, lum: lum)
+    func colorChanged(color: Colors, hue: CGFloat, sat: CGFloat, lum: CGFloat) {
+        processImage(color: color, hue: hue, sat: sat, lum: lum)
     }
 }
 

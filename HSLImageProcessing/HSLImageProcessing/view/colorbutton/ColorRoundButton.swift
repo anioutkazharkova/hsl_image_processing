@@ -16,13 +16,13 @@ class ColorRoundButton: UIView {
     @IBOutlet weak var frameView: RoundImage!
     
     var isSelected: Bool = false {
-        didSet(value){
-            frameView.isHidden = !value
+        didSet{
+            frameView.isHidden = !isSelected
         }
     }
     
     var color: UIColor = UIColor.clear{
-        didSet(value){
+        didSet{
             circle.backgroundColor = color
             frameView.setupAsFrame(color: color, width: frameWidth)
         }
