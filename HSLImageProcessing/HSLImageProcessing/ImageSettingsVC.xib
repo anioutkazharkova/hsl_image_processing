@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ImageSettingsVC" customModule="HSLImageProcessing" customModuleProvider="target">
             <connections>
+                <outlet property="hslControl" destination="hEI-aA-NrD" id="eiH-Ze-sup"/>
                 <outlet property="imageView" destination="LBa-Wc-n9q" id="euP-MH-RKo"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

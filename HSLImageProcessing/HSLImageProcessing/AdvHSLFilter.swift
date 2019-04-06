@@ -40,25 +40,25 @@ class AdvHSLFilter: CIFilter {
         return kernel
     }()
     
-    func setupFilter(selectedColor: Colors, shift: CGFloat){
+    func setupFilter(selectedColor: Colors, hueShift: CGFloat, sat: CGFloat, lum: CGFloat){
         resetShifts()
         switch selectedColor {
         case .red:
-             inputRedShift = CIVector(x: shift, y: 1, z: 1)
+             inputRedShift = CIVector(x: hueShift, y: sat, z: lum)
         case .orange:
-            inputOrangeShift = CIVector(x: shift, y: 1, z: 1)
+            inputOrangeShift = CIVector(x: hueShift, y: sat, z: lum)
         case .yellow:
-            inputYellowShift = CIVector(x: shift, y: 1, z: 1)
+            inputYellowShift = CIVector(x: hueShift, y: sat, z: lum)
         case .green:
-            inputGreenShift = CIVector(x: shift, y: 1, z: 1)
+            inputGreenShift = CIVector(x: hueShift, y: sat, z: lum)
         case .aqua:
-            inputAquaShift = CIVector(x: shift, y: 1, z: 1)
+            inputAquaShift = CIVector(x: hueShift, y: sat, z: lum)
         case .blue:
-            inputBlueShift = CIVector(x: shift, y: 1, z: 1)
+            inputBlueShift = CIVector(x: hueShift, y: sat, z: lum)
         case .purple:
-            inputPurpleShift = CIVector(x: shift, y: 1, z: 1)
+            inputPurpleShift = CIVector(x: hueShift, y: sat, z: lum)
         case .magenta:
-           inputMagentaShift = CIVector(x: shift, y: 1, z: 1)
+           inputMagentaShift = CIVector(x: hueShift, y: sat, z: lum)
         }
     }
     

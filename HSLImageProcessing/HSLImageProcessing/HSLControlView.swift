@@ -35,6 +35,8 @@ class HSLControlView: UIView {
         }
     }
     
+    weak var listener: HSLListener? = nil
+    
     @IBOutlet weak var hueSlider: GradientSlider!
     
     @IBOutlet weak var satSlider: GradientSlider!
@@ -83,15 +85,24 @@ class HSLControlView: UIView {
     
     
     @IBAction func hueChanged(_ sender: Any) {
+        colorChanged()
         resetForHue()
     }
     
     
     @IBAction func satChanged(_ sender: Any) {
+        colorChanged()
     }
     
     @IBAction func lumChanged(_ sender: Any) {
+        colorChanged()
        resetForLum()
+    }
+    
+    func colorChanged() {
+        if let hue = currentHue, let sat = currentSat, let lum = currentLum {
+          listener?.colorChanged(hue: CGFloat(hue)/hueMax, sat: CGFloat(sat), lum: CGFloat(lum)/lumDiv)
+        }
     }
     
     func resetForHue() {
@@ -111,4 +122,11 @@ class HSLControlView: UIView {
         }
     }
     
+    deinit {
+        listener = nil
+    }
+}
+
+protocol HSLListener : class {
+    func colorChanged(hue: CGFloat,sat: CGFloat, lum : CGFloat)
 }

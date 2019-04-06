@@ -25,14 +25,14 @@ class FilteredImageHelper
         return _contextFast!
     }
     
-    static func applyFilter(image: UIImage, color: Colors, shift:Float,saturation:Float,lum: Float) -> UIImage?
+    static func applyFilter(image: UIImage, color: Colors, hueShift:CGFloat,saturation:CGFloat,lum: CGFloat) -> UIImage?
     {
         let ciFilter = AdvHSLFilter()
         if let ci = CIImage(image: image) {
             ciFilter.inputImage = ci
          }
         
-        ciFilter.setupFilter(selectedColor: color, shift: CGFloat(shift))
+        ciFilter.setupFilter(selectedColor: color, hueShift: hueShift,sat:  saturation, lum: lum)
         
         if let filteredImageData = ciFilter.value(forKey: kCIOutputImageKey) as? CIImage {
             if  let filteredImageRef = FilteredImageHelper.ciContext.createCGImage(filteredImageData, from: filteredImageData.extent) {
