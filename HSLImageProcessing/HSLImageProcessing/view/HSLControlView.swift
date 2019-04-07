@@ -24,7 +24,6 @@ class HSLControlView: UIView {
     var selectedFilter: ColorFilter? = nil {
         didSet{
             setupSliders(color: selectedColor)
-            listener?.colorChanged(color: selectedFilter?.defaultColor ?? .red, hue: selectedFilter?.selectedHue ?? 0, sat: selectedFilter?.selectedSat ?? 0, lum: selectedFilter?.selectedLum ?? 0)
         }
     }
     
@@ -96,15 +95,9 @@ class HSLControlView: UIView {
         return view
     }
     
-    func setupFilters(filters: [ColorFilter]){
-        var items = [ColorItem]()
-        for f in filters {
-            var item = ColorItem(color: f.defaultColor)
-            items.append(item)
-        }
-        items[0].isSelected = true
-        selectedFilter = filters[0]
-        colorPalette?.setupData(colors: items)
+    func setupColors(colors: [ColorItem]){
+        colors[0].isSelected = true
+        colorPalette?.setupData(colors: colors)
     }
     
     func changeFilter(filter:ColorFilter){
@@ -119,9 +112,9 @@ class HSLControlView: UIView {
         hueSlider.addGradient(colors: color.createColorSet())
         satSlider.addGradient(colors: [color.cgColor,color.cgColor])
         lumSlider.addGradient(colors: color.createLumSet())
-        hueSlider?.value = Float(selectedFilter?.selectedHue ?? 0)
-        satSlider?.value = Float(selectedFilter?.selectedSat ?? 1)
-     //   lumSlider?.value = Float(selectedFilter?.selectedLum ?? 0.5)*Float(lumDiv)
+       hueSlider?.value = Float(selectedFilter?.selectedHue ?? 0)
+       satSlider?.value = Float(selectedFilter?.selectedSat ?? 1)
+ //   lumSlider?.value = Float(selectedFilter?.selectedLum ?? 0.5)*Float(lumDiv)
     }
     
     
@@ -145,7 +138,7 @@ class HSLControlView: UIView {
             selectedFilter?.selectedHue = CGFloat(hue)
             selectedFilter?.selectedSat = CGFloat(sat)
             selectedFilter?.selectedLum = CGFloat(lum)
-            listener?.colorChanged(color: selectedFilter?.defaultColor ?? .red, hue: CGFloat(hue)/hueMax, sat: CGFloat(sat), lum: CGFloat(lum)/lumDiv)
+            listener?.colorChanged(filter: selectedFilter!)
         }
     }
     
@@ -173,9 +166,11 @@ class HSLControlView: UIView {
 
 
 protocol HSLListener : class {
-    func colorChanged(color: Colors,hue: CGFloat,sat: CGFloat, lum : CGFloat)
+    func colorChanged(filter: ColorFilter)
 }
 
 protocol FilterChangedListener : class {
     func filterItemChanged(index: Int)
+    func filterColorSelected(color: Colors)
+    func needSetupFilter()
 }

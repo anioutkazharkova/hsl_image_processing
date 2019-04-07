@@ -13,6 +13,10 @@ import CoreImage
 
 extension UIColor
 {
+    convenience  init(hue: CGFloat) {
+        let correctHue = hue < 0 ? 1 + hue : hue 
+        self.init(hue: correctHue, saturation: 1, lightness: 0.5)
+    }
     convenience init(hue: CGFloat, saturation: CGFloat, lightness: CGFloat, alpha: CGFloat = 1)  {
         let offset = saturation * (lightness < 0.5 ? lightness : 1 - lightness)
         let brightness = lightness + offset
@@ -142,10 +146,19 @@ extension UIColor
                 self.colorWithLum(lum: 0.5).cgColor,
                 self.colorWithLum(lum: 0.7).cgColor]
     }
+    
+    var colorGroup:Colors {
+        get {
+         let hue = self.hue()
+           return hue.colorForHue()
+        }
+    }
+    
+   
 }
 
-extension UIImage {
-  static  func gradientImage(size: CGSize, colorSet: [CGColor]) -> UIImage? {
+extension UIView{
+    static func createGradient(size: CGSize, colorSet: [CGColor])->CAGradientLayer {
         let tgl = CAGradientLayer()
         tgl.frame = CGRect.init(x:0, y:0, width:size.width, height: size.height)
         tgl.cornerRadius = tgl.frame.height / 2
@@ -153,6 +166,13 @@ extension UIImage {
         tgl.colors = colorSet
         tgl.startPoint = CGPoint.init(x:0.0, y:0)
         tgl.endPoint = CGPoint.init(x:1, y:0)
+        return tgl
+    }
+}
+
+extension UIImage {
+  static  func gradientImage(size: CGSize, colorSet: [CGColor]) -> UIImage? {
+        let tgl = UIView.createGradient(size: size, colorSet: colorSet)
         
         UIGraphicsBeginImageContextWithOptions(size, tgl.isOpaque, 0.0);
         guard let context = UIGraphicsGetCurrentContext() else { return nil }

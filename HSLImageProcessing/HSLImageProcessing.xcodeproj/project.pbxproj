@@ -16,7 +16,7 @@
 		635324702254FE85003E3762 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6353246F2254FE85003E3762 /* Extensions.swift */; };
 		6353247C2258A717003E3762 /* hsv_filter.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = 6353247B2258A717003E3762 /* hsv_filter.cikernel */; };
 		6353247E2258A9A4003E3762 /* AdvHSLFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6353247D2258A9A4003E3762 /* AdvHSLFilter.swift */; };
-		635324802258AC95003E3762 /* ColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6353247F2258AC95003E3762 /* ColorHelper.swift */; };
+		635324802258AC95003E3762 /* ColorUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6353247F2258AC95003E3762 /* ColorUtility.swift */; };
 		635324832258BDAA003E3762 /* FilteredImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635324822258BDAA003E3762 /* FilteredImageHelper.swift */; };
 		635324892258DD4D003E3762 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635324882258DD4D003E3762 /* ImageScrollView.swift */; };
 		6353248B2258E29F003E3762 /* GradientSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6353248A2258E29F003E3762 /* GradientSlider.swift */; };
@@ -32,6 +32,8 @@
 		635324AA2259265E003E3762 /* ColorAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635324A92259265E003E3762 /* ColorAdapter.swift */; };
 		635324AD2259270E003E3762 /* ColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635324AB2259270E003E3762 /* ColorCell.swift */; };
 		635324AE2259270E003E3762 /* ColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 635324AC2259270E003E3762 /* ColorCell.xib */; };
+		635324B02259F140003E3762 /* FilterImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635324AF2259F140003E3762 /* FilterImageManager.swift */; };
+		635324B2225A23A0003E3762 /* HSVSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635324B1225A23A0003E3762 /* HSVSlider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,7 +48,7 @@
 		6353246F2254FE85003E3762 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6353247B2258A717003E3762 /* hsv_filter.cikernel */ = {isa = PBXFileReference; lastKnownFileType = text; path = hsv_filter.cikernel; sourceTree = "<group>"; };
 		6353247D2258A9A4003E3762 /* AdvHSLFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvHSLFilter.swift; sourceTree = "<group>"; };
-		6353247F2258AC95003E3762 /* ColorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHelper.swift; sourceTree = "<group>"; };
+		6353247F2258AC95003E3762 /* ColorUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtility.swift; sourceTree = "<group>"; };
 		635324822258BDAA003E3762 /* FilteredImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredImageHelper.swift; sourceTree = "<group>"; };
 		635324882258DD4D003E3762 /* ImageScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
 		6353248A2258E29F003E3762 /* GradientSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientSlider.swift; sourceTree = "<group>"; };
@@ -62,6 +64,8 @@
 		635324A92259265E003E3762 /* ColorAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorAdapter.swift; sourceTree = "<group>"; };
 		635324AB2259270E003E3762 /* ColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
 		635324AC2259270E003E3762 /* ColorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorCell.xib; sourceTree = "<group>"; };
+		635324AF2259F140003E3762 /* FilterImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterImageManager.swift; sourceTree = "<group>"; };
+		635324B1225A23A0003E3762 /* HSVSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSVSlider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,8 +111,9 @@
 				6353246F2254FE85003E3762 /* Extensions.swift */,
 				6353247B2258A717003E3762 /* hsv_filter.cikernel */,
 				6353247D2258A9A4003E3762 /* AdvHSLFilter.swift */,
-				6353247F2258AC95003E3762 /* ColorHelper.swift */,
+				6353247F2258AC95003E3762 /* ColorUtility.swift */,
 				635324822258BDAA003E3762 /* FilteredImageHelper.swift */,
+				635324AF2259F140003E3762 /* FilterImageManager.swift */,
 			);
 			path = HSLImageProcessing;
 			sourceTree = "<group>";
@@ -133,6 +138,7 @@
 				6353248E2258F8AE003E3762 /* HSLControlView.xib */,
 				6353249B22592351003E3762 /* ColorPaleteView.xib */,
 				635324A6225925FF003E3762 /* ColorPaleteView.swift */,
+				635324B1225A23A0003E3762 /* HSVSlider.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -243,14 +249,16 @@
 			files = (
 				635324892258DD4D003E3762 /* ImageScrollView.swift in Sources */,
 				635324922259197E003E3762 /* ColorFilter.swift in Sources */,
-				635324802258AC95003E3762 /* ColorHelper.swift in Sources */,
+				635324802258AC95003E3762 /* ColorUtility.swift in Sources */,
 				6353249822591BA4003E3762 /* RoundImage.swift in Sources */,
 				6353249A22591EE0003E3762 /* ColorRoundButton.swift in Sources */,
 				635324832258BDAA003E3762 /* FilteredImageHelper.swift in Sources */,
 				635324702254FE85003E3762 /* Extensions.swift in Sources */,
 				6353248B2258E29F003E3762 /* GradientSlider.swift in Sources */,
+				635324B2225A23A0003E3762 /* HSVSlider.swift in Sources */,
 				6353247E2258A9A4003E3762 /* AdvHSLFilter.swift in Sources */,
 				635324AD2259270E003E3762 /* ColorCell.swift in Sources */,
+				635324B02259F140003E3762 /* FilterImageManager.swift in Sources */,
 				6353249E22592392003E3762 /* ColorItem.swift in Sources */,
 				6353248D2258F885003E3762 /* HSLControlView.swift in Sources */,
 				635324A7225925FF003E3762 /* ColorPaleteView.swift in Sources */,

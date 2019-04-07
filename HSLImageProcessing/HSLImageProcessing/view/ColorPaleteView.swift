@@ -11,9 +11,13 @@ import UIKit
 @IBDesignable
 class ColorPaleteView: UIView {
 
+    @IBOutlet weak var colorSampleView: UIView!
+    @IBOutlet weak var slider: HSVSlider!
     @IBOutlet weak var colorButtonsList: UICollectionView!
     var adapter:ColorAdapter? = nil
     weak var filterListener: FilterChangedListener?
+    
+    private var singleMode: Bool = false
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,10 +38,27 @@ class ColorPaleteView: UIView {
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         
         addSubview(view)
+        
         adapter = ColorAdapter()
         colorButtonsList.register(UINib.init(nibName: ColorCell.cellIdentifier, bundle: nil), forCellWithReuseIdentifier:ColorCell.cellIdentifier)
         colorButtonsList.dataSource = adapter
         colorButtonsList.delegate = adapter
+        
+        changeMode(mode: singleMode)
+        setupColor(hue: CGFloat(0)/360.0)
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(sliderTapped(gestureRecognizer:)))
+        self.slider.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+   @objc func sliderTapped(gestureRecognizer: UIGestureRecognizer) {
+        let pointTapped: CGPoint = gestureRecognizer.location(in: self.slider)
+        
+        let positionOfSlider: CGPoint = slider.frame.origin
+        let widthOfSlider: CGFloat = slider.frame.size.width
+        let newValue = ((pointTapped.x - positionOfSlider.x) * CGFloat(slider.maximumValue) / widthOfSlider)
+        
+        slider.setValue(Float(newValue), animated: true)
+    setupColor(hue: CGFloat(newValue)/360.0)
     }
     
     private func loadViewFromNib() -> UIView {
@@ -47,6 +68,33 @@ class ColorPaleteView: UIView {
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         
         return view
+    }
+    
+    @IBAction func colorSelected(_ sender: HSVSlider) {
+        let hue = sender.value
+         print("\(hue)")
+        setupColor(hue: CGFloat(hue)/360.0)
+    }
+    
+    @IBAction func changePaletteMode(_ sender: Any) {
+       singleMode = !singleMode
+        changeMode(mode: singleMode)
+        if (!singleMode) {
+            filterListener?.needSetupFilter()
+        }
+    }
+    
+    private func changeMode(mode: Bool){
+        
+        slider?.isHidden = !mode
+        colorSampleView?.isHidden = !mode
+        colorButtonsList?.isHidden = mode
+    }
+    
+    private func setupColor(hue: CGFloat){
+       
+        self.filterListener?.filterColorSelected(color: hue.colorForHue())
+        self.colorSampleView.backgroundColor = UIColor(hue: hue)
     }
     
     func setupData(colors: [ColorItem]) {

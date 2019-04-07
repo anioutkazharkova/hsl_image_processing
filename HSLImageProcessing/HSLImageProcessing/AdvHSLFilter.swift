@@ -11,6 +11,7 @@ import UIKit
 
 class AdvHSLFilter: CIFilter {
     
+    let max: CGFloat = 360.0
     var sense: CGFloat = 0.15
     
     var inputImage: CIImage?
@@ -32,8 +33,33 @@ class AdvHSLFilter: CIFilter {
         return kernel
     }()
     
+    func setupColorFilter(filter: ColorFilter){
+        self.setupFilter(selectedColor: filter.defaultColor, shift: filter.shift)
+    }
+    
+    func setupFilter(selectedColor: Colors, shift: CIVector){
+        switch selectedColor {
+        case .red:
+            inputRedShift = shift
+        case .orange:
+            inputOrangeShift = shift
+        case .yellow:
+            inputYellowShift = shift
+        case .green:
+            inputGreenShift = shift
+        case .aqua:
+            inputAquaShift = shift
+        case .blue:
+            inputBlueShift = shift
+        case .purple:
+            inputPurpleShift = shift
+        case .magenta:
+            inputMagentaShift = shift
+        }
+    }
+    
     func setupFilter(selectedColor: Colors, hueShift: CGFloat, sat: CGFloat, lum: CGFloat){
-        resetShifts()
+        //resetShifts()
         switch selectedColor {
         case .red:
              inputRedShift = CIVector(x: hueShift, y: sat, z: lum)
@@ -52,6 +78,10 @@ class AdvHSLFilter: CIFilter {
         case .magenta:
            inputMagentaShift = CIVector(x: hueShift, y: sat, z: lum)
         }
+    }
+    
+    func resetFilter() {
+        resetShifts()
     }
     
     private func resetShifts() {

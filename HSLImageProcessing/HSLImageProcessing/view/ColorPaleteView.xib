@@ -13,6 +13,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ColorPaleteView" customModule="HSLImageProcessing" customModuleProvider="target">
             <connections>
                 <outlet property="colorButtonsList" destination="zCt-2E-VDV" id="NDQ-qH-neh"/>
+                <outlet property="colorSampleView" destination="CjZ-1f-qFl" id="Uvh-7C-Si2"/>
+                <outlet property="slider" destination="p8c-IM-Pns" id="KDg-lG-V5s"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -21,10 +23,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="zCt-2E-VDV">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="40"/>
+                    <rect key="frame" x="0.0" y="0.0" width="319" height="40"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="240" id="6yK-kb-CjX"/>
+                        <constraint firstAttribute="height" constant="40" id="xV3-Bd-TAQ"/>
                     </constraints>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="WKo-Vc-TE0">
                         <size key="itemSize" width="40" height="40"/>
@@ -33,15 +35,55 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CjZ-1f-qFl">
+                    <rect key="frame" x="0.0" y="10" width="20" height="20"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="Lh0-t1-qet"/>
+                        <constraint firstAttribute="width" constant="20" id="U5D-h0-3nG"/>
+                    </constraints>
+                </view>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-60" maxValue="300" translatesAutoresizingMaskIntoConstraints="NO" id="p8c-IM-Pns" customClass="HSVSlider" customModule="HSLImageProcessing" customModuleProvider="target">
+                    <rect key="frame" x="23" y="10" width="298" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="VF4-GY-AdQ"/>
+                    </constraints>
+                    <connections>
+                        <action selector="colorSelected:" destination="-1" eventType="valueChanged" id="1pV-Hc-c72"/>
+                    </connections>
+                </slider>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xqg-2u-yCa">
+                    <rect key="frame" x="335" y="0.0" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="S9m-8a-FVO"/>
+                        <constraint firstAttribute="width" constant="40" id="Yyr-14-kK2"/>
+                    </constraints>
+                    <state key="normal" image="wheel"/>
+                    <connections>
+                        <action selector="changePaletteMode:" destination="-1" eventType="touchUpInside" id="Vuj-fV-VbP"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="zCt-2E-VDV" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="2Y3-4m-N31"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Xqg-2u-yCa" secondAttribute="bottom" id="Fco-Jy-u8c"/>
+                <constraint firstItem="Xqg-2u-yCa" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="GFM-HN-UFj"/>
                 <constraint firstItem="zCt-2E-VDV" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Ncr-98-aBo"/>
-                <constraint firstAttribute="bottom" secondItem="zCt-2E-VDV" secondAttribute="bottom" id="V6x-fW-K4Q"/>
+                <constraint firstItem="CjZ-1f-qFl" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="S1H-jg-Wf1"/>
+                <constraint firstItem="p8c-IM-Pns" firstAttribute="leading" secondItem="CjZ-1f-qFl" secondAttribute="trailing" constant="5" id="W2a-TJ-8Vd"/>
+                <constraint firstItem="Xqg-2u-yCa" firstAttribute="leading" secondItem="p8c-IM-Pns" secondAttribute="trailing" constant="16" id="Xn7-Wu-AM5"/>
+                <constraint firstItem="CjZ-1f-qFl" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="a9c-97-sqj"/>
+                <constraint firstItem="Xqg-2u-yCa" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="qdD-wh-7lo"/>
+                <constraint firstItem="zCt-2E-VDV" firstAttribute="trailing" secondItem="p8c-IM-Pns" secondAttribute="trailing" id="tZ6-iu-Fjh"/>
+                <constraint firstItem="p8c-IM-Pns" firstAttribute="centerY" secondItem="CjZ-1f-qFl" secondAttribute="centerY" id="wpw-Cf-wmG"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="39.200000000000003" y="46.776611694152926"/>
         </view>
     </objects>
+    <resources>
+        <image name="wheel" width="30" height="30"/>
+    </resources>
 </document>

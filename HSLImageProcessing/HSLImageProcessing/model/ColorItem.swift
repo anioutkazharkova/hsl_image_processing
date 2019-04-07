@@ -17,4 +17,9 @@ class ColorItem {
         self.color = color
         self.colorFilter = ColorFilter(color: color)
     }
+    
+    init(filter: ColorFilter){
+        self.colorFilter = filter
+        self.color = filter.defaultColor
+    }
 }

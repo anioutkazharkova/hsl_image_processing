@@ -32,7 +32,7 @@ class FilteredImageHelper
             ciFilter.inputImage = ci
          }
         
-        ciFilter.setupFilter(selectedColor: color, hueShift: hueShift,sat:  saturation, lum: lum)
+        ciFilter.setupFilter(selectedColor: color, hueShift: hueShift,sat:  saturation, lum: 1)
         
         if let filteredImageData = ciFilter.value(forKey: kCIOutputImageKey) as? CIImage {
             if  let filteredImageRef = FilteredImageHelper.ciContext.createCGImage(filteredImageData, from: filteredImageData.extent) {

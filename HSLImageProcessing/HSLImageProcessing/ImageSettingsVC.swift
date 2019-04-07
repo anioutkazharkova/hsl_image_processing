@@ -13,16 +13,10 @@ class ImageSettingsVC: UIViewController{
    
 
     var defaultImage: UIImage? = nil
+    var processedImage: UIImage? = nil
     let queue = DispatchQueue(label: "image_queue",qos: .userInteractive)
     var imageItem: DispatchWorkItem? = nil
-    
-    var filters:[ColorFilter] = [ColorFilter(color: .red),
-                                 ColorFilter(color: .yellow),
-                                 ColorFilter(color: .green),
-                                 ColorFilter(color:  .purple),
-                                 ColorFilter(color: .blue),
-                                 ColorFilter(color: .aqua)
-                                 ]
+    weak var imageHelper = FilterImageManager.sharedInstance
     
     @IBOutlet weak var imageView: ImageScrollView?
     
@@ -32,12 +26,17 @@ class ImageSettingsVC: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
 defaultImage = UIImage(named: "image2")
+        processedImage = UIImage(named: "image2")
         imageView?.setup()
         
         imageView?.imageContentMode = .aspectFit
         imageView?.initialOffset = .center
     imageView?.display(image: defaultImage!)
-        hslControl?.setupFilters(filters: filters)
+        
+        imageHelper?.setupFilter(image: defaultImage!)
+       
+        hslControl?.setupColors(colors: imageHelper?.filters.map{ColorItem(filter: $0)} ?? [ColorItem]())
+        hslControl?.selectedFilter = imageHelper?.selectedFilter
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,14 +54,15 @@ defaultImage = UIImage(named: "image2")
     }
     
     
-    func processImage(color: Colors, hue: CGFloat, sat: CGFloat, lum: CGFloat) {
+    func processImage() {
         if (imageItem != nil) {
             imageItem?.cancel()
         }
         
         imageItem = DispatchWorkItem { [weak self]  in
-            if let im = self?.defaultImage, let output = FilteredImageHelper.applyFilter(image: im, color: color, hueShift: hue, saturation: sat, lum: lum) {
+            if let output = self?.imageHelper?.apply(){
                 DispatchQueue.main.async {
+               // self?.processedImage = output
                 self?.imageView?.display(image: output)
                 }
             }
@@ -78,13 +78,25 @@ defaultImage = UIImage(named: "image2")
 
 extension ImageSettingsVC : FilterChangedListener {
     func filterItemChanged(index: Int) {
-        hslControl?.changeFilter(filter:filters[index])
+        imageHelper?.selectFilter(index: index)
+       hslControl?.selectedFilter = imageHelper?.selectedFilter
+    }
+    
+    func filterColorSelected(color: Colors) {
+      imageHelper?.setupFilter(image: self.defaultImage!, with: color)
+      hslControl?.selectedFilter = imageHelper?.selectedFilter
+    }
+    
+    func needSetupFilter() {
+        imageHelper?.setupFilter(image: self.defaultImage!)
+         hslControl?.selectedFilter = imageHelper?.selectedFilter
     }
 }
 
 extension ImageSettingsVC : HSLListener {
-    func colorChanged(color: Colors, hue: CGFloat, sat: CGFloat, lum: CGFloat) {
-        processImage(color: color, hue: hue, sat: sat, lum: lum)
+    func colorChanged(filter: ColorFilter) {
+        imageHelper?.changeFilter(filter: filter)
+        processImage()
     }
 }
 
