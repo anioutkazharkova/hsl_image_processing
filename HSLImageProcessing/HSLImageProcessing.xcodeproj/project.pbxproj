@@ -34,6 +34,7 @@
 		635324AE2259270E003E3762 /* ColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 635324AC2259270E003E3762 /* ColorCell.xib */; };
 		635324B02259F140003E3762 /* FilterImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635324AF2259F140003E3762 /* FilterImageManager.swift */; };
 		635324B2225A23A0003E3762 /* HSVSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635324B1225A23A0003E3762 /* HSVSlider.swift */; };
+		635324B4225A4F3C003E3762 /* ActionImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635324B3225A4F3C003E3762 /* ActionImageButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		635324AC2259270E003E3762 /* ColorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorCell.xib; sourceTree = "<group>"; };
 		635324AF2259F140003E3762 /* FilterImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterImageManager.swift; sourceTree = "<group>"; };
 		635324B1225A23A0003E3762 /* HSVSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSVSlider.swift; sourceTree = "<group>"; };
+		635324B3225A4F3C003E3762 /* ActionImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionImageButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 				6353249B22592351003E3762 /* ColorPaleteView.xib */,
 				635324A6225925FF003E3762 /* ColorPaleteView.swift */,
 				635324B1225A23A0003E3762 /* HSVSlider.swift */,
+				635324B3225A4F3C003E3762 /* ActionImageButton.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				635324832258BDAA003E3762 /* FilteredImageHelper.swift in Sources */,
 				635324702254FE85003E3762 /* Extensions.swift in Sources */,
 				6353248B2258E29F003E3762 /* GradientSlider.swift in Sources */,
+				635324B4225A4F3C003E3762 /* ActionImageButton.swift in Sources */,
 				635324B2225A23A0003E3762 /* HSVSlider.swift in Sources */,
 				6353247E2258A9A4003E3762 /* AdvHSLFilter.swift in Sources */,
 				635324AD2259270E003E3762 /* ColorCell.swift in Sources */,

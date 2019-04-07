@@ -12,6 +12,8 @@ import CoreImage
 class ImageSettingsVC: UIViewController{
    
 
+    var showPrevImageButton:ActionImageButton?
+    
     var defaultImage: UIImage? = nil
     var processedImage: UIImage? = nil
     let queue = DispatchQueue(label: "image_queue",qos: .userInteractive)
@@ -41,9 +43,33 @@ defaultImage = UIImage(named: "image2")
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.barTintColor = UIColor.clear
+        setupMenu()
         hslControl?.listener = self
         hslControl?.filterListener = self
         imageView?.imageScrollViewDelegate = self
+    }
+    
+    func setupMenu(){
+        if (showPrevImageButton == nil){
+            showPrevImageButton = ActionImageButton(frame:CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 30, height: 30)))
+            showPrevImageButton?.setBackgroundImage(UIImage(named: "prev_image"), for: .normal)
+            showPrevImageButton?.listener = self
+        }
+        
+        let prevImage = UIBarButtonItem(customView: showPrevImageButton!)
+       
+        self.navigationItem.leftBarButtonItem = prevImage
+    }
+    
+    @objc func showDefaultImage(sender: AnyObject, forEvent event: UIEvent) {
+      
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -62,7 +88,7 @@ defaultImage = UIImage(named: "image2")
         imageItem = DispatchWorkItem { [weak self]  in
             if let output = self?.imageHelper?.apply(){
                 DispatchQueue.main.async {
-               // self?.processedImage = output
+                self?.processedImage = output
                 self?.imageView?.display(image: output)
                 }
             }
@@ -72,6 +98,20 @@ defaultImage = UIImage(named: "image2")
             item.notify(queue: DispatchQueue.main){ [weak self] in
                 self?.imageItem = nil
             }
+        }
+    }
+}
+
+extension ImageSettingsVC : LongPressListener {
+    func longPressStarted() {
+        if let image = self.defaultImage {
+            self.imageView?.display(image: image)
+        }
+    }
+    
+    func longPressEnded() {
+        if let image = self.processedImage {
+            self.imageView?.display(image: image)
         }
     }
 }
