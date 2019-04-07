@@ -12,9 +12,7 @@ import UIKit
 @IBDesignable
 class HSLControlView: UIView {
     
-    let hueMax:CGFloat = 360.0
-    let lumDiv: CGFloat = 100.0
-    
+
     weak var filterListener: FilterChangedListener? {
         didSet {
             colorPalette?.filterListener = filterListener
@@ -114,7 +112,7 @@ class HSLControlView: UIView {
         lumSlider.addGradient(colors: color.createLumSet())
        hueSlider?.value = Float(selectedFilter?.selectedHue ?? 0)
        satSlider?.value = Float(selectedFilter?.selectedSat ?? 1)
- //   lumSlider?.value = Float(selectedFilter?.selectedLum ?? 0.5)*Float(lumDiv)
+   lumSlider?.value = Float(selectedFilter?.selectedLum ?? ColorFilter.lumStart)
     }
     
     
@@ -144,7 +142,7 @@ class HSLControlView: UIView {
     
     func resetForHue() {
         if let hue = currentHue, let lum = currentLum {
-            currentColor = selectedColor.hslColor(hue: selectedColor.normalizeHue(shift: CGFloat(hue)/hueMax),sat: 1, lum: CGFloat(lum)/lumDiv)
+            currentColor = selectedColor.hslColor(hue: selectedColor.normalizeHue(shift: CGFloat(hue)/ColorFilter.maxHue),sat: 1, lum: CGFloat(lum)/ColorFilter.lumDiv)
             satSlider.addGradient(colors: [currentColor.cgColor,currentColor.cgColor])
             lumSlider.addGradient(colors: currentColor.colorWithLum(lum: selectedColor.hsl!.lightness).createLumSet())
         }
@@ -152,7 +150,7 @@ class HSLControlView: UIView {
     
     func resetForLum() {
         if let hue = currentHue, let lum = currentLum {
-            currentColor = selectedColor.hslColor(hue: selectedColor.normalizeHue(shift: CGFloat(hue)/hueMax), sat: 1, lum: CGFloat(lum)/lumDiv)
+            currentColor = selectedColor.hslColor(hue: selectedColor.normalizeHue(shift: CGFloat(hue)/ColorFilter.maxHue), sat: 1, lum: CGFloat(lum)/ColorFilter.lumDiv)
             hueSlider.addGradient(colors: currentColor.createColorSet())
             satSlider.addGradient(colors: [currentColor.cgColor,currentColor.cgColor])
             
