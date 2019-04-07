@@ -20,6 +20,7 @@ class ImageSettingsVC: BaseVC{
     var imageItem: DispatchWorkItem? = nil
     weak var imageHelper = FilterImageManager.sharedInstance
     
+    
     @IBOutlet weak var imageView: ImageScrollView?
     
     @IBOutlet weak var hslControl: HSLControlView!
@@ -27,13 +28,15 @@ class ImageSettingsVC: BaseVC{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupFilters()
+        ImagePhotoManager.shared.loadImageForCurrentAsset{ [weak self] image in
+            self?.setupImage(image: image)
+        }
     }
     
     func setupImage(image: UIImage){
         self.defaultImage = image.copy() as? UIImage
         self.processedImage=image.copy() as? UIImage
-        
+        setupFilters()
     }
     
     func setupFilters() {
@@ -70,16 +73,24 @@ class ImageSettingsVC: BaseVC{
         self.navigationItem.leftBarButtonItem = prevImage
     }
     
-    @objc func showDefaultImage(sender: AnyObject, forEvent event: UIEvent) {
-      
-    }
     
     override func viewWillDisappear(_ animated: Bool) {
         hslControl?.listener = nil
         hslControl?.filterListener = nil
         imageView?.imageScrollViewDelegate = nil
+        self.clean()
         super.viewWillDisappear(animated)
     }
+    
+    @IBAction func closeClicked(_ sender: Any) {
+       self.clean()
+        self.navigationController?.popViewController(animated: false)
+    }
+    
+    @IBAction func okClicked(_ sender: Any) {
+        self.saveImage()
+    }
+    
     
     
     func processImage() {
@@ -112,6 +123,27 @@ class ImageSettingsVC: BaseVC{
     func showProcessedImage() {
         if let image = self.processedImage {
             self.imageView?.display(image: image)
+        }
+    }
+    
+    func saveImage() {
+        if let image = self.processedImage {
+            ImagePhotoManager.shared.saveImage(image: image,successful: {
+                [weak self] in
+                DispatchQueue.main.async {
+                    self?.navigationController?.popViewController(animated: false)
+                }
+            }){}
+        }
+    }
+    
+    func clean() {
+        self.defaultImage = nil
+        self.processedImage = nil
+        imageHelper?.reset()
+        if (imageItem != nil) {
+            imageItem?.cancel()
+            imageItem = nil
         }
     }
 }

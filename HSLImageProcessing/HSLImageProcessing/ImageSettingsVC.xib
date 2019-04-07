@@ -27,10 +27,47 @@
                     <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hEI-aA-NrD" customClass="HSLControlView" customModule="HSLImageProcessing" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="427" width="375" height="240"/>
+                    <rect key="frame" x="0.0" y="427" width="375" height="200"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="240" id="3Av-gw-TzD"/>
+                        <constraint firstAttribute="height" constant="200" id="3Av-gw-TzD"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ITY-U1-dsY">
+                    <rect key="frame" x="0.0" y="627" width="375" height="40"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IF5-Jl-thx">
+                            <rect key="frame" x="20" y="5" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="9XI-rq-Yx3"/>
+                                <constraint firstAttribute="height" constant="30" id="NIY-vc-y9O"/>
+                            </constraints>
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" image="close"/>
+                            <connections>
+                                <action selector="closeClicked:" destination="-1" eventType="touchUpInside" id="uuh-u6-OMZ"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RrA-N2-o4N">
+                            <rect key="frame" x="325" y="5" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="iWP-iO-chG"/>
+                                <constraint firstAttribute="width" constant="30" id="sCb-bP-RSX"/>
+                            </constraints>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" image="ok"/>
+                            <connections>
+                                <action selector="okClicked:" destination="-1" eventType="touchUpInside" id="PEh-qB-M8o"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="RrA-N2-o4N" secondAttribute="trailing" constant="20" id="QeO-ez-afg"/>
+                        <constraint firstItem="RrA-N2-o4N" firstAttribute="centerY" secondItem="ITY-U1-dsY" secondAttribute="centerY" id="Xhy-bQ-lb8"/>
+                        <constraint firstAttribute="height" constant="40" id="YNE-E1-ICE"/>
+                        <constraint firstItem="IF5-Jl-thx" firstAttribute="leading" secondItem="ITY-U1-dsY" secondAttribute="leading" constant="20" id="gya-Da-aYH"/>
+                        <constraint firstItem="IF5-Jl-thx" firstAttribute="centerY" secondItem="ITY-U1-dsY" secondAttribute="centerY" id="kZ3-A6-AB4"/>
                     </constraints>
                 </view>
             </subviews>
@@ -38,8 +75,11 @@
             <constraints>
                 <constraint firstItem="hEI-aA-NrD" firstAttribute="top" secondItem="LBa-Wc-n9q" secondAttribute="bottom" id="0Zw-gD-6ZG"/>
                 <constraint firstItem="LBa-Wc-n9q" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="62k-mj-YjE"/>
+                <constraint firstItem="ITY-U1-dsY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ITH-m0-KcJ"/>
                 <constraint firstItem="hEI-aA-NrD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="VUk-L6-5eV"/>
-                <constraint firstItem="hEI-aA-NrD" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="loz-FQ-VQB"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ITY-U1-dsY" secondAttribute="bottom" id="bEA-Dc-Pu5"/>
+                <constraint firstItem="ITY-U1-dsY" firstAttribute="top" secondItem="hEI-aA-NrD" secondAttribute="bottom" id="loz-FQ-VQB"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ITY-U1-dsY" secondAttribute="trailing" id="qoa-xt-CFV"/>
                 <constraint firstItem="LBa-Wc-n9q" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="rOO-JY-UyK"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hEI-aA-NrD" secondAttribute="trailing" id="vhw-bd-fXd"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="LBa-Wc-n9q" secondAttribute="trailing" id="ytw-HB-RQI"/>
@@ -48,4 +88,8 @@
             <point key="canvasLocation" x="130.40000000000001" y="152.47376311844079"/>
         </view>
     </objects>
+    <resources>
+        <image name="close" width="29" height="29"/>
+        <image name="ok" width="29" height="29"/>
+    </resources>
 </document>

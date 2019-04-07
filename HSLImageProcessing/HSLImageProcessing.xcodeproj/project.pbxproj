@@ -40,6 +40,7 @@
 		635324BE225A5665003E3762 /* ImagePickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 635324BC225A5665003E3762 /* ImagePickerCell.xib */; };
 		635324C0225A56EE003E3762 /* ImageAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635324BF225A56EE003E3762 /* ImageAdapter.swift */; };
 		635324C3225A671D003E3762 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635324C2225A671D003E3762 /* BaseVC.swift */; };
+		635324C5225A77A3003E3762 /* ImagePhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635324C4225A77A3003E3762 /* ImagePhotoManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,7 @@
 		635324BC225A5665003E3762 /* ImagePickerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImagePickerCell.xib; sourceTree = "<group>"; };
 		635324BF225A56EE003E3762 /* ImageAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAdapter.swift; sourceTree = "<group>"; };
 		635324C2225A671D003E3762 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
+		635324C4225A77A3003E3762 /* ImagePhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePhotoManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 				635324AF2259F140003E3762 /* FilterImageManager.swift */,
 				635324B5225A5414003E3762 /* ImagePickerController.swift */,
 				635324B6225A5414003E3762 /* ImagePickerController.xib */,
+				635324C4225A77A3003E3762 /* ImagePhotoManager.swift */,
 			);
 			path = HSLImageProcessing;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				635324B2225A23A0003E3762 /* HSVSlider.swift in Sources */,
 				6353247E2258A9A4003E3762 /* AdvHSLFilter.swift in Sources */,
 				635324AD2259270E003E3762 /* ColorCell.swift in Sources */,
+				635324C5225A77A3003E3762 /* ImagePhotoManager.swift in Sources */,
 				635324B02259F140003E3762 /* FilterImageManager.swift in Sources */,
 				6353249E22592392003E3762 /* ColorItem.swift in Sources */,
 				635324C0225A56EE003E3762 /* ImageAdapter.swift in Sources */,

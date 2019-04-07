@@ -69,6 +69,10 @@ class FilterImageManager: NSObject {
         self.selectedFilter = filters[index]
     }
     
+    func reset() {
+        self.workImage = nil
+        self.filters = [ColorFilter]()
+    }
     
     func apply() -> UIImage?
     {
@@ -88,4 +92,5 @@ class FilterImageManager: NSObject {
         
         return nil
     }
+    
 }

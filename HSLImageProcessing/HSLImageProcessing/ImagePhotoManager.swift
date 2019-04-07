@@ -1,0 +1,78 @@
+//
+//  ImagePhotoManager.swift
+//  HSLImageProcessing
+//
+//  Created by 1 on 08.04.2019.
+//  Copyright © 2019 azharkova. All rights reserved.
+//
+
+import UIKit
+import Photos
+
+class ImagePhotoManager: NSObject {
+
+  var assets: PHFetchResult<AnyObject>?
+  static let shared = ImagePhotoManager()
+  var currentAsset: PHAsset?
+  
+    func saveImage(image: UIImage, successful:  @escaping()->Void,
+                    failure: @escaping()->Void) {
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.creationRequestForAsset(from: image)
+        }, completionHandler: { success, error in
+            if success {
+                successful()
+            }
+            else if error != nil {
+                failure()
+            }
+            else {
+               failure()
+            }
+        })
+    }
+    
+    func loadAssets(success:@escaping (PHFetchResult<AnyObject>)->Void,
+                    failure: @escaping ()->Void){
+        if PHPhotoLibrary.authorizationStatus() == .authorized {
+             self.loadAssets(success: success)
+        } else {
+            PHPhotoLibrary.requestAuthorization({ (status: PHAuthorizationStatus) -> Void in
+                if status == .authorized {
+                    self.loadAssets(success: success)
+                } else {
+                   failure()
+                }
+            })
+        }
+    }
+    
+    func loadAssets(success:@escaping (PHFetchResult<AnyObject>)->Void){
+        
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: false)]
+        fetchOptions.fetchLimit = 25000
+        assets = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: fetchOptions) as? PHFetchResult<AnyObject>
+        success(assets!)
+    }
+    
+    func selectAsset(index: Int){
+         self.currentAsset = assets?[index] as? PHAsset
+    }
+    
+    func loadImageForCurrentAsset(success: @escaping(UIImage)->Void) {
+        let width = UIScreen.main.bounds.width
+        let options = PHImageRequestOptions()
+        options.deliveryMode = .highQualityFormat
+        options.resizeMode = .fast
+        if let item = currentAsset {
+            
+            PHImageManager.default().requestImage(for: item, targetSize: CGSize(width: width, height: 0.75 * width), contentMode: .aspectFill, options: options) {(image: UIImage?, info: [AnyHashable: Any]?) -> Void in
+                if let _image = image {
+                  success(_image)
+                }
+            }
+        }
+    }
+    
+}

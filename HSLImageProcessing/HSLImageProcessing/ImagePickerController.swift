@@ -11,7 +11,7 @@ import Photos
 
 class ImagePickerController: BaseVC {
 
-    var assets: PHFetchResult<AnyObject>?
+    
     var adapter: ImageAdapter?
     @IBOutlet weak var imageList: UICollectionView!
     
@@ -24,28 +24,22 @@ class ImagePickerController: BaseVC {
         adapter?.sideSize = ((self.view?.bounds.width ?? 0) - 8.0)/4
         
         imageList.register(UINib.init(nibName: ImagePickerCell.cellIdentifier, bundle: nil), forCellWithReuseIdentifier:ImagePickerCell.cellIdentifier)
-        imageList.delegate = adapter
-        imageList.dataSource = adapter
-        if PHPhotoLibrary.authorizationStatus() == .authorized {
-            reloadAssets()
-        } else {
-            PHPhotoLibrary.requestAuthorization({ (status: PHAuthorizationStatus) -> Void in
-                if status == .authorized {
-                    self.reloadAssets()
-                } else {
-                    self.showNeedAccessMessage()
-                }
-            })
-        }
+        
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.adapter?.owner = self
+        imageList.delegate = adapter
+        imageList.dataSource = adapter
+        loadAssets()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.adapter?.owner = nil 
+        self.adapter?.owner = nil
+        imageList.delegate = nil
+        imageList.dataSource = nil
         super.viewWillDisappear(animated)
     }
     
@@ -64,13 +58,17 @@ class ImagePickerController: BaseVC {
         show(alert, sender: nil)
     }
     
-    func reloadAssets() {
-        self.showLoading(show: true)
-        let fetchOptions = PHFetchOptions()
-        fetchOptions.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: false)]
-        fetchOptions.fetchLimit = 25000
-        assets = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: fetchOptions) as? PHFetchResult<AnyObject>
+    func loadAssets() {
+        ImagePhotoManager.shared.loadAssets(success: {
+            [weak self] result in
+            self?.setupAssets(assets: result)
+            },failure: { [weak self] in
+            self?.showNeedAccessMessage()
+        })
+    }
     
+    func setupAssets(assets: PHFetchResult<AnyObject>) {
+        self.showLoading(show: true)
         adapter?.loadAssets(assets: assets)
         DispatchQueue.main.async { [weak self] in
             self?.imageList?.reloadData()
@@ -89,20 +87,13 @@ class ImagePickerController: BaseVC {
     }
     
     private func loadImage(index: Int) {
-        let width = self.view.bounds.width
-        let options = PHImageRequestOptions()
-        options.deliveryMode = .highQualityFormat
-        options.resizeMode = .fast
-        
-        if let item = assets?[index] as? PHAsset {
-        PHImageManager.default().requestImage(for:item, targetSize: CGSize(width: width, height: 0.75 * width), contentMode: .aspectFill, options: options) { [weak self] (image: UIImage?, info: [AnyHashable: Any]?) -> Void in
-            if let _image = image {
-                let vc = ImageSettingsVC()
-                vc.setupImage(image: _image)
-                self?.navigationController?.pushViewController(vc, animated: false)
-            }
-        }
-        }
+        ImagePhotoManager.shared.selectAsset(index: index)
+      goToFilter()
+    }
+    
+    private func goToFilter() {
+        let vc = ImageSettingsVC()
+        self.navigationController?.pushViewController(vc, animated: false)
     }
 }
 
