@@ -33,9 +33,9 @@ class ColorFilter {
     
     var normalizeLum:CGFloat{
         if (selectedLum > ColorFilter.lumStart) {
-          return  1.0 + (selectedLum - ColorFilter.lumStart)/(ColorFilter.lumDiv)*0.25
+          return  1.0 + (selectedLum - ColorFilter.lumStart)/(ColorFilter.lumDiv)*0.5
         } else {
-            return 1.0 - (ColorFilter.lumStart - selectedLum)/(ColorFilter.lumDiv)*0.25
+            return 1.0 - (ColorFilter.lumStart - selectedLum)/(ColorFilter.lumDiv)*0.5
         }
     }
     
