@@ -9,7 +9,7 @@
 import UIKit
 import CoreImage
 
-class ImageSettingsVC: UIViewController{
+class ImageSettingsVC: BaseVC{
    
 
     var showPrevImageButton:ActionImageButton?
@@ -51,13 +51,7 @@ class ImageSettingsVC: UIViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.view.backgroundColor = .clear
-        self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController?.navigationBar.barTintColor = UIColor.clear
+       
         setupMenu()
         hslControl?.listener = self
         hslControl?.filterListener = self

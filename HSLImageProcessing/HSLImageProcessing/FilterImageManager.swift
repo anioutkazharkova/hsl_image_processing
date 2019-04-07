@@ -81,7 +81,7 @@ class FilterImageManager: NSObject {
         }
         
         if let filteredImageData = ciFilter.value(forKey: kCIOutputImageKey) as? CIImage {
-            if  let filteredImageRef = FilteredImageHelper.ciContext.createCGImage(filteredImageData, from: filteredImageData.extent) {
+            if  let filteredImageRef = FilterImageManager.sharedInstance.ciContextFast.createCGImage(filteredImageData, from: filteredImageData.extent) {
                 return UIImage(cgImage: filteredImageRef)
             }
         }

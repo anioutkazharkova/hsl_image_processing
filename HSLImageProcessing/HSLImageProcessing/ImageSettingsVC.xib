@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="LBa-Wc-n9q" customClass="ImageScrollView" customModule="HSLImageProcessing" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="20" width="375" height="437"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="427"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hEI-aA-NrD" customClass="HSLControlView" customModule="HSLImageProcessing" customModuleProvider="target">
@@ -36,11 +36,11 @@
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
             <constraints>
-                <constraint firstItem="hEI-aA-NrD" firstAttribute="top" secondItem="LBa-Wc-n9q" secondAttribute="bottom" constant="-30" id="0Zw-gD-6ZG"/>
+                <constraint firstItem="hEI-aA-NrD" firstAttribute="top" secondItem="LBa-Wc-n9q" secondAttribute="bottom" id="0Zw-gD-6ZG"/>
                 <constraint firstItem="LBa-Wc-n9q" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="62k-mj-YjE"/>
                 <constraint firstItem="hEI-aA-NrD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="VUk-L6-5eV"/>
                 <constraint firstItem="hEI-aA-NrD" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="loz-FQ-VQB"/>
-                <constraint firstItem="LBa-Wc-n9q" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="rOO-JY-UyK"/>
+                <constraint firstItem="LBa-Wc-n9q" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="rOO-JY-UyK"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hEI-aA-NrD" secondAttribute="trailing" id="vhw-bd-fXd"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="LBa-Wc-n9q" secondAttribute="trailing" id="ytw-HB-RQI"/>
             </constraints>

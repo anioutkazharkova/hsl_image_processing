@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class ImagePickerController: UIViewController {
+class ImagePickerController: BaseVC {
 
     var assets: PHFetchResult<AnyObject>?
     var adapter: ImageAdapter?
@@ -58,7 +58,7 @@ class ImagePickerController: UIViewController {
         }))
         
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction) -> Void in
-            UIApplication.shared.openURL(URL(string: UIApplication.openSettingsURLString)!)
+            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
         }))
         
         show(alert, sender: nil)
@@ -92,7 +92,7 @@ class ImagePickerController: UIViewController {
         let width = self.view.bounds.width
         let options = PHImageRequestOptions()
         options.deliveryMode = .highQualityFormat
-        options.resizeMode = .exact
+        options.resizeMode = .fast
         
         if let item = assets?[index] as? PHAsset {
         PHImageManager.default().requestImage(for:item, targetSize: CGSize(width: width, height: 0.75 * width), contentMode: .aspectFill, options: options) { [weak self] (image: UIImage?, info: [AnyHashable: Any]?) -> Void in
