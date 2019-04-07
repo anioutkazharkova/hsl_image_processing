@@ -27,16 +27,24 @@ class ImageSettingsVC: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-defaultImage = UIImage(named: "image2")
-        processedImage = UIImage(named: "image2")
+        setupFilters()
+    }
+    
+    func setupImage(image: UIImage){
+        self.defaultImage = image.copy() as? UIImage
+        self.processedImage=image.copy() as? UIImage
+        
+    }
+    
+    func setupFilters() {
         imageView?.setup()
         
         imageView?.imageContentMode = .aspectFit
         imageView?.initialOffset = .center
-    imageView?.display(image: defaultImage!)
+        imageView?.display(image: defaultImage!)
         
         imageHelper?.setupFilter(image: defaultImage!)
-       
+        
         hslControl?.setupColors(colors: imageHelper?.filters.map{ColorItem(filter: $0)} ?? [ColorItem]())
         hslControl?.selectedFilter = imageHelper?.selectedFilter
     }
@@ -100,19 +108,27 @@ defaultImage = UIImage(named: "image2")
             }
         }
     }
-}
-
-extension ImageSettingsVC : LongPressListener {
-    func longPressStarted() {
+    
+    func showDefaultImage() {
         if let image = self.defaultImage {
             self.imageView?.display(image: image)
         }
     }
     
-    func longPressEnded() {
+    func showProcessedImage() {
         if let image = self.processedImage {
             self.imageView?.display(image: image)
         }
+    }
+}
+
+extension ImageSettingsVC : LongPressListener {
+    func longPressStarted() {
+       showDefaultImage()
+    }
+    
+    func longPressEnded() {
+      showProcessedImage()
     }
 }
 
@@ -123,11 +139,13 @@ extension ImageSettingsVC : FilterChangedListener {
     }
     
     func filterColorSelected(color: Colors) {
+       showDefaultImage()
       imageHelper?.setupFilter(image: self.defaultImage!, with: color)
       hslControl?.selectedFilter = imageHelper?.selectedFilter
     }
     
     func needSetupFilter() {
+       showDefaultImage()
         imageHelper?.setupFilter(image: self.defaultImage!)
          hslControl?.selectedFilter = imageHelper?.selectedFilter
     }
