@@ -26,7 +26,7 @@ class ColorFilter {
     
     var shift:CIVector {
         get {
-            return CIVector(x: selectedHue/ColorFilter.maxHue, y: selectedSat,
+            return CIVector(x: (selectedHue/ColorFilter.maxHue)*0.5, y: selectedSat,
                             z: normalizeLum)
         }
     }
