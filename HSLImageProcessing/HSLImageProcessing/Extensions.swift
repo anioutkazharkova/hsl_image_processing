@@ -170,6 +170,15 @@ extension UIView{
     }
 }
 
+extension Int{
+    func pxToDp()->CGFloat {
+        return CGFloat(self)/UIScreen.main.scale
+    }
+    func dpToPx()->CGFloat {
+        return CGFloat(self)*UIScreen.main.scale
+    }
+}
+
 extension UIImage {
   static  func gradientImage(size: CGSize, colorSet: [CGColor]) -> UIImage? {
         let tgl = UIView.createGradient(size: size, colorSet: colorSet)
@@ -183,5 +192,36 @@ extension UIImage {
                 UIEdgeInsets.init(top: 0, left: size.height, bottom: 0, right: size.height))
         UIGraphicsEndImageContext()
         return image
+    }
+    
+    func resize(targetSize: CGSize) -> UIImage {
+        let image = self
+        let size = image.size
+        
+        let widthRatio  = targetSize.width  / image.size.width
+        let heightRatio = targetSize.height / image.size.height
+        
+        var newSize: CGSize
+        if widthRatio > heightRatio {
+            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+        } else {
+            newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
+        }
+        
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+        
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
+    }
+    
+    func scale(scale: CGFloat) -> UIImage? {
+        let image = self
+        let size = image.size
+        let scaledSize = CGSize(width: size.width * scale, height: size.height * scale)
+        return image.resize(targetSize: scaledSize)
     }
 }

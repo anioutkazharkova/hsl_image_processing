@@ -17,10 +17,12 @@ class ImagePhotoManager: NSObject {
   
     func saveImage(image: UIImage, successful:  @escaping()->Void,
                     failure: @escaping()->Void) {
+        let size = CGSize(width: (currentAsset?.pixelWidth ?? 0).pxToDp(), height: (currentAsset?.pixelHeight ?? 0).pxToDp())
         PHPhotoLibrary.shared().performChanges({
-            PHAssetChangeRequest.creationRequestForAsset(from: image)
-        }, completionHandler: { success, error in
+            PHAssetChangeRequest.creationRequestForAsset(from: image.resize(targetSize: size))
+        }, completionHandler: { [weak self] success, error in
             if success {
+                self?.currentAsset = nil
                 successful()
             }
             else if error != nil {
@@ -31,6 +33,8 @@ class ImagePhotoManager: NSObject {
             }
         })
     }
+    
+    
     
     func loadAssets(success:@escaping (PHFetchResult<AnyObject>)->Void,
                     failure: @escaping ()->Void){
