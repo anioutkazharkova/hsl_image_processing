@@ -20,6 +20,10 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Приложению необходим доступ к фото пользователя</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Приложению необходим доступ к камере</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Приложению необходим доступ к фото пользователя</string>
 	<key>UILaunchStoryboardName</key>
