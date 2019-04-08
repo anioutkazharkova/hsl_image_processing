@@ -10,26 +10,24 @@ import Foundation
 import UIKit
 
 class GradientSlider: UISlider {
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
+
     }
-    
-    private let gradient : CAGradientLayer = CAGradientLayer()
-    
-   
+
+    private let gradient: CAGradientLayer = CAGradientLayer()
+
     func addGradient(colors: [CGColor]) {
-       
-        let trackImage = UIImage.gradientImage(size: CGSize(width: self.bounds.width,height:2), colorSet: colors)
+
+        let trackImage = UIImage.gradientImage(size: CGSize(width: self.bounds.width, height: 2), colorSet: colors)
         self.setMinimumTrackImage(trackImage, for: .normal)
         self.setMaximumTrackImage(trackImage, for: .normal)
     }
-    
-    
+
 }

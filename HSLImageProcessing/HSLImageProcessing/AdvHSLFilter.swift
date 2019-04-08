@@ -10,10 +10,10 @@ import CoreImage
 import UIKit
 
 class AdvHSLFilter: CIFilter {
-    
+
     let max: CGFloat = 360.0
     var sense: CGFloat = 0.15
-    
+
     var inputImage: CIImage?
     var inputRedShift = CIVector(x: 0, y: 1, z: 1)
     var inputOrangeShift = CIVector(x: 0, y: 1, z: 1)
@@ -23,21 +23,21 @@ class AdvHSLFilter: CIFilter {
     var inputBlueShift = CIVector(x: 0, y: 1, z: 1)
     var inputPurpleShift = CIVector(x: 0, y: 1, z: 1)
     var inputMagentaShift = CIVector(x: 0, y: 1, z: 1)
-    
+
     let kernel: CIColorKernel? = {
         let hslData = Bundle.main.path(forResource: "hsv_filter", ofType: "cikernel")
-        
+
         guard let path = hslData,
             let code = try? String(contentsOfFile: path),
             let kernel = CIColorKernel(source: code) else { return nil }
         return kernel
     }()
-    
-    func setupColorFilter(filter: ColorFilter){
+
+    func setupColorFilter(filter: ColorFilter) {
         self.setupFilter(selectedColor: filter.defaultColor, shift: filter.shift)
     }
-    
-    func setupFilter(selectedColor: Colors, shift: CIVector){
+
+    func setupFilter(selectedColor: Colors, shift: CIVector) {
         switch selectedColor {
         case .red:
             inputRedShift = shift
@@ -57,8 +57,8 @@ class AdvHSLFilter: CIFilter {
             inputMagentaShift = shift
         }
     }
-    
-    func setupFilter(selectedColor: Colors, hueShift: CGFloat, sat: CGFloat, lum: CGFloat){
+
+    func setupFilter(selectedColor: Colors, hueShift: CGFloat, sat: CGFloat, lum: CGFloat) {
         //resetShifts()
         switch selectedColor {
         case .red:
@@ -79,11 +79,11 @@ class AdvHSLFilter: CIFilter {
            inputMagentaShift = CIVector(x: hueShift, y: sat, z: lum)
         }
     }
-    
+
     func resetFilter() {
         resetShifts()
     }
-    
+
     private func resetShifts() {
         inputRedShift = CIVector(x: 0, y: 1, z: 1)
         inputOrangeShift = CIVector(x: 0, y: 1, z: 1)
@@ -94,10 +94,8 @@ class AdvHSLFilter: CIFilter {
         inputPurpleShift = CIVector(x: 0, y: 1, z: 1)
         inputMagentaShift = CIVector(x: 0, y: 1, z: 1)
     }
-    
-    
-        override var attributes: [String : Any]
-        {
+
+        override var attributes: [String: Any] {
             return [
                 kCIAttributeFilterDisplayName: "MultiBandHSV" as AnyObject,
                 "inputImage": [kCIAttributeIdentity: 0,
@@ -106,11 +104,9 @@ class AdvHSLFilter: CIFilter {
                                kCIAttributeType: kCIAttributeTypeImage]
             ]
         }
-    
-        override var outputImage: CIImage?
-        {
-            guard let inputImage = inputImage else
-            {
+
+        override var outputImage: CIImage? {
+            guard let inputImage = inputImage else {
                 return nil
             }
             return kernel?.apply(extent: inputImage.extent,
@@ -122,6 +118,6 @@ class AdvHSLFilter: CIFilter {
                                                         inputAquaShift,
                                                         inputBlueShift,
                                                         inputPurpleShift,
-                                                        inputMagentaShift,sense])
+                                                        inputMagentaShift, sense])
         }
 }

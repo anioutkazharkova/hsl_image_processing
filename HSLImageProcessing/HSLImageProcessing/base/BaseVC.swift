@@ -14,12 +14,12 @@ class BaseVC: UIViewController {
         super.viewDidLoad()
 self.view?.backgroundColor = UIColor.black
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavBar()
     }
-    
+
     func setupNavBar() {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)

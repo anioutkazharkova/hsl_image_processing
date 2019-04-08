@@ -14,16 +14,15 @@ class HSVSlider: UISlider {
         addGradient()
         self.setThumbImage(UIImage(), for: .normal)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         addGradient()
         self.setThumbImage(UIImage(), for: .normal)
     }
-    
-    private let gradient : CAGradientLayer = CAGradientLayer()
-    
-    
+
+    private let gradient: CAGradientLayer = CAGradientLayer()
+
     func addGradient() {
         let colors = [ColorUtility.magenta.cgColor,
             ColorUtility.red.cgColor,

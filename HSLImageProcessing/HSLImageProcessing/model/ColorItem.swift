@@ -9,16 +9,16 @@
 import Foundation
 
 class ColorItem {
-    var isSelected:Bool = false
+    var isSelected: Bool = false
     var color: Colors = .red
-    var colorFilter:ColorFilter
-    
-    init(color: Colors){
+    var colorFilter: ColorFilter
+
+    init(color: Colors) {
         self.color = color
         self.colorFilter = ColorFilter(color: color)
     }
-    
-    init(filter: ColorFilter){
+
+    init(filter: ColorFilter) {
         self.colorFilter = filter
         self.color = filter.defaultColor
     }

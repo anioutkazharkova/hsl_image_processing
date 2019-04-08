@@ -9,10 +9,10 @@
 import UIKit
 
 class ImagePickerCell: UICollectionViewCell {
-    
+
     static let cellIdentifier = "ImagePickerCell"
     @IBOutlet weak  var imageView: UIImageView!
-    
+
     var image: UIImage? {
         get {
             return imageView.image
@@ -21,5 +21,5 @@ class ImagePickerCell: UICollectionViewCell {
             imageView.image = newValue
         }
     }
-    
+
 }

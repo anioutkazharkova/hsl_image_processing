@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ColorUtility{
+class ColorUtility {
     static let red = UIColor.red
     static let orange = UIColor(red: 0.901961, green: 0.584314, blue: 0.270588, alpha: 1)
     static let yellow = UIColor(red: 0.901961, green: 0.901961, blue: 0.270588, alpha: 1)
@@ -21,7 +21,7 @@ class ColorUtility{
 
 }
 
-enum Colors : CGFloat{
+enum Colors: CGFloat {
     case red, orange, yellow, green, aqua, blue, purple, magenta
 }
 
@@ -31,8 +31,8 @@ extension Colors {
          return self.getColor().hue()
         }
     }
-    
-    func getColor()->UIColor {
+
+    func getColor() -> UIColor {
         switch (self) {
         case .red:
             return ColorUtility.red
@@ -52,14 +52,14 @@ extension Colors {
             return ColorUtility.magenta
         }
     }
-    
+
 }
 
 extension CGFloat {
-    func colorForHue()->Colors{
-        let step:CGFloat = 15/360.0
+    func colorForHue() -> Colors {
+        let step: CGFloat = 15/360.0
         let correctHue = self < 0 ? 1 + self : self
-        switch(correctHue){
+        switch(correctHue) {
         case Colors.magenta.hue+step..<1.0, Colors.red.hue..<Colors.orange.hue:
             return .red
         case Colors.orange.hue..<Colors.orange.hue+step/2:

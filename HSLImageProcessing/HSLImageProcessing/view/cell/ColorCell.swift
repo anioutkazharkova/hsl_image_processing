@@ -11,10 +11,10 @@ import UIKit
 class ColorCell: UICollectionViewCell {
     static let cellIdentifier = "ColorCell"
     @IBOutlet weak var colorButton: ColorRoundButton!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
     }
     func setupData(colorItem: ColorItem) {
         self.colorButton.isSelected = colorItem.isSelected

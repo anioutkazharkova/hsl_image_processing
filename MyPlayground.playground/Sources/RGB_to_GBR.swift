@@ -2,7 +2,6 @@ import Foundation
 import UIKit
 import  CoreImage
 
-
 /*class   Filter: CIFilter {
     
     @objc var inputImage: CIImage?
@@ -41,54 +40,52 @@ vec4 l = sample(leftSamp,samplerCoord(leftSamp));
 */
 
 class RGB_to_GBR: CIFilter {
-    
+
     let kernel: CIColorKernel = {
         let kernelString =
             "kernel vec4 RGB_to_GBR(__sample pixel)\n" +
                 "{\n" +
                 "vec4 twistedColor = pixel.gbra;\n" +
-                
+
                 "return twistedColor;\n" +
         "}\n"
-        
+
         return CIColorKernel(source: kernelString)!
     }()
-    
-    
+
     var inputImage: CIImage?
-    
+
     override var outputImage: CIImage? {
         guard let inputImage = inputImage else {
             return nil
         }
-        
+
         return kernel.apply(extent: inputImage.extent,
                             arguments: [inputImage])
     }
 }
 
 class Filter: CIFilter {
-    
+
     let kernel: CIColorKernel? = {
         let kernelString =
             "kernel vec4 RGB_to_GBR(__sample pixel)\n" +
                 "{\n" +
                 "vec4 twistedColor = pixel.gbra;\n" +
-                
+
                 "return twistedColor;\n" +
         "}\n"
-        
+
         return CIColorKernel(source: kernelString)
     }()
-    
-    
+
     @objc dynamic   var inputImage: CIImage?
-    
+
     override var outputImage: CIImage? {
         guard let kernel = kernel, let inputImage = inputImage else {
             return nil
         }
-        
+
         return kernel.apply(extent: inputImage.extent,
                             arguments: [inputImage])
     }

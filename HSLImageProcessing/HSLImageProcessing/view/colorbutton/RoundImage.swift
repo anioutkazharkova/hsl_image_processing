@@ -21,7 +21,7 @@ class RoundImage: UIImageView {
 }
 
 extension RoundImage {
-    func setupAsFrame(color: UIColor, width: CGFloat){
+    func setupAsFrame(color: UIColor, width: CGFloat) {
         self.backgroundColor = UIColor.clear
         self.layer.borderWidth = width
         self.layer.borderColor = color.cgColor
