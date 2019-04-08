@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window?.makeKeyAndVisible()
-        window?.rootViewController = UINavigationController(rootViewController: ImagePickerController())
+        window?.rootViewController = UINavigationController(rootViewController: ImagePickerVC())
         return true
     }
 

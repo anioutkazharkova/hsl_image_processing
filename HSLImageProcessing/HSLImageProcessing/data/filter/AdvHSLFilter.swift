@@ -11,7 +11,6 @@ import UIKit
 
 class AdvHSLFilter: CIFilter {
 
-    let max: CGFloat = 360.0
     var sense: CGFloat = 0.15
 
     var inputImage: CIImage?
@@ -58,28 +57,6 @@ class AdvHSLFilter: CIFilter {
         }
     }
 
-    func setupFilter(selectedColor: Colors, hueShift: CGFloat, sat: CGFloat, lum: CGFloat) {
-        //resetShifts()
-        switch selectedColor {
-        case .red:
-             inputRedShift = CIVector(x: hueShift, y: sat, z: lum)
-        case .orange:
-            inputOrangeShift = CIVector(x: hueShift, y: sat, z: lum)
-        case .yellow:
-            inputYellowShift = CIVector(x: hueShift, y: sat, z: lum)
-        case .green:
-            inputGreenShift = CIVector(x: hueShift, y: sat, z: lum)
-        case .aqua:
-            inputAquaShift = CIVector(x: hueShift, y: sat, z: lum)
-        case .blue:
-            inputBlueShift = CIVector(x: hueShift, y: sat, z: lum)
-        case .purple:
-            inputPurpleShift = CIVector(x: hueShift, y: sat, z: lum)
-        case .magenta:
-           inputMagentaShift = CIVector(x: hueShift, y: sat, z: lum)
-        }
-    }
-
     func resetFilter() {
         resetShifts()
     }
@@ -97,7 +74,7 @@ class AdvHSLFilter: CIFilter {
 
         override var attributes: [String: Any] {
             return [
-                kCIAttributeFilterDisplayName: "MultiBandHSV" as AnyObject,
+                kCIAttributeFilterDisplayName: "HSL" as AnyObject,
                 "inputImage": [kCIAttributeIdentity: 0,
                                kCIAttributeClass: "CIImage",
                                kCIAttributeDisplayName: "Image",

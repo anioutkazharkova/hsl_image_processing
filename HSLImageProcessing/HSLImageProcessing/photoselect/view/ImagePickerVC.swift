@@ -9,8 +9,9 @@
 import UIKit
 import Photos
 
-class ImagePickerController: BaseVC {
+class ImagePickerVC: BaseVC {
 
+    private weak var photoManager = ImagePhotoManager.shared
     var adapter: ImageAdapter?
     @IBOutlet weak var imageList: UICollectionView!
 
@@ -40,37 +41,38 @@ class ImagePickerController: BaseVC {
         super.viewWillDisappear(animated)
     }
 
-     func showNeedAccessMessage() {
-        let alert = UIAlertController(title: "Image picker", message: "App need get access to photos", preferredStyle: .alert)
-
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction) -> Void in
-            self.dismiss(animated: true, completion: nil)
-        }))
-
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction) -> Void in
-            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
-        }))
-
-        show(alert, sender: nil)
-    }
-
     func loadAssets() {
         ImagePhotoManager.shared.loadAssets(success: {
             [weak self] result in
+             self?.showLoading(show: true)
             self?.setupAssets(assets: result)
             }, failure: { [weak self] in
+            self?.showLoading(show: false)
             self?.showNeedAccessMessage()
         })
     }
 
     func setupAssets(assets: PHFetchResult<AnyObject>) {
-        self.showLoading(show: true)
         adapter?.loadAssets(assets: assets)
         DispatchQueue.main.async { [weak self] in
             self?.imageList?.reloadData()
             self?.showLoading(show: false)
             self?.imageList?.isHidden = false
         }
+    }
+    
+    func showNeedAccessMessage() {
+        let alert = UIAlertController(title: nil, message: "Приложению необходим доступ к фотографиям", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: { (action: UIAlertAction) -> Void in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction) -> Void in
+            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+        }))
+        
+        show(alert, sender: nil)
     }
 
     func showLoading(show: Bool) {
@@ -83,7 +85,7 @@ class ImagePickerController: BaseVC {
     }
 
     private func loadImage(index: Int) {
-        ImagePhotoManager.shared.selectAsset(index: index)
+        photoManager?.selectAsset(index: index)
       goToFilter()
     }
 
@@ -93,7 +95,7 @@ class ImagePickerController: BaseVC {
     }
 }
 
-extension ImagePickerController: ListOwner {
+extension ImagePickerVC: ListOwner {
     func reload() {
         imageList?.reloadData()
     }

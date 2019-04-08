@@ -171,7 +171,7 @@ extension ImageSettingsVC: FilterChangedListener {
     }
 }
 
-extension ImageSettingsVC: HSLListener {
+extension ImageSettingsVC: ColorChangedListener {
     func colorChanged(filter: ColorFilter) {
         imageHelper?.changeFilter(filter: filter)
         processImage()

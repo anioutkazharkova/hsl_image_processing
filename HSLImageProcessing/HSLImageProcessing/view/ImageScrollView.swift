@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 
+/*
+ https://github.com/huynguyencong/ImageScrollView
+ */
 @objc public protocol ImageScrollViewDelegate: UIScrollViewDelegate {
     func imageScrollViewDidChangeOrientation(imageScrollView: ImageScrollView)
 }
