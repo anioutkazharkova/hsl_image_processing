@@ -44,7 +44,7 @@
                     </constraints>
                 </view>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-60" maxValue="300" translatesAutoresizingMaskIntoConstraints="NO" id="p8c-IM-Pns" customClass="HSVSlider" customModule="HSLImageProcessing" customModuleProvider="target">
-                    <rect key="frame" x="28" y="10" width="299" height="21"/>
+                    <rect key="frame" x="34" y="10" width="293" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="VF4-GY-AdQ"/>
                     </constraints>
@@ -71,7 +71,7 @@
                 <constraint firstItem="Xqg-2u-yCa" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="GFM-HN-UFj"/>
                 <constraint firstItem="zCt-2E-VDV" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Ncr-98-aBo"/>
                 <constraint firstItem="CjZ-1f-qFl" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="S1H-jg-Wf1"/>
-                <constraint firstItem="p8c-IM-Pns" firstAttribute="leading" secondItem="CjZ-1f-qFl" secondAttribute="trailing" constant="10" id="W2a-TJ-8Vd"/>
+                <constraint firstItem="p8c-IM-Pns" firstAttribute="leading" secondItem="CjZ-1f-qFl" secondAttribute="trailing" constant="16" id="W2a-TJ-8Vd"/>
                 <constraint firstItem="Xqg-2u-yCa" firstAttribute="leading" secondItem="p8c-IM-Pns" secondAttribute="trailing" constant="10" id="Xn7-Wu-AM5"/>
                 <constraint firstItem="CjZ-1f-qFl" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="a9c-97-sqj"/>
                 <constraint firstItem="Xqg-2u-yCa" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="qdD-wh-7lo"/>
