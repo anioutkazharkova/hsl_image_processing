@@ -22,19 +22,20 @@ class ColorFilter {
     var selectedHue: CGFloat = CGFloat(0)
     var selectedSat: CGFloat = CGFloat(1)
     var selectedLum: CGFloat = CGFloat(ColorFilter.lumStart)
+    var sense = CGFloat(0.15)
 
     var shift: CIVector {
         get {
-            return CIVector(x: (selectedHue/ColorFilter.maxHue)*0.5, y: selectedSat,
+            return CIVector(x: (selectedHue/ColorFilter.maxHue)*sense, y: selectedSat,
                             z: normalizeLum)
         }
     }
 
     var normalizeLum: CGFloat {
         if (selectedLum > ColorFilter.lumStart) {
-          return  1.0 + (selectedLum - ColorFilter.lumStart)/(ColorFilter.lumDiv)*0.5
+          return  1.0 + (selectedLum - ColorFilter.lumStart)/(ColorFilter.lumDiv)*0.5*sense
         } else {
-            return 1.0 - (ColorFilter.lumStart - selectedLum)/(ColorFilter.lumDiv)*0.5
+            return 1.0 - (ColorFilter.lumStart - selectedLum)/(ColorFilter.lumDiv)*0.5*sense
         }
     }
 

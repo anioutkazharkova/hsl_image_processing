@@ -77,6 +77,12 @@ class ImageSettingsVC: BaseVC {
         super.viewWillDisappear(animated)
     }
     
+    @IBAction func intencityChanged(_ sender: Any) {
+        let sense = ((sender as? UISlider)?.value ?? 15.0)/100.0
+        hslControl?.changeIntencity(sense: CGFloat(sense))
+    }
+    
+    
     @IBAction func closeClicked(_ sender: Any) {
         self.clean()
         self.navigationController?.popViewController(animated: false)

@@ -48,6 +48,12 @@
                                 <action selector="closeClicked:" destination="-1" eventType="touchUpInside" id="uuh-u6-OMZ"/>
                             </connections>
                         </button>
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="15" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="E50-tT-DSn" customClass="ThumbSlider" customModule="HSLImageProcessing" customModuleProvider="target">
+                            <rect key="frame" x="64" y="5" width="247" height="31"/>
+                            <connections>
+                                <action selector="intencityChanged:" destination="-1" eventType="valueChanged" id="cos-gY-RkW"/>
+                            </connections>
+                        </slider>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RrA-N2-o4N">
                             <rect key="frame" x="325" y="5" width="30" height="30"/>
                             <constraints>
@@ -63,9 +69,12 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="E50-tT-DSn" firstAttribute="centerY" secondItem="ITY-U1-dsY" secondAttribute="centerY" id="Ifo-rx-gNU"/>
                         <constraint firstAttribute="trailing" secondItem="RrA-N2-o4N" secondAttribute="trailing" constant="20" id="QeO-ez-afg"/>
+                        <constraint firstItem="RrA-N2-o4N" firstAttribute="leading" secondItem="E50-tT-DSn" secondAttribute="trailing" constant="16" id="ThE-sJ-Jys"/>
                         <constraint firstItem="RrA-N2-o4N" firstAttribute="centerY" secondItem="ITY-U1-dsY" secondAttribute="centerY" id="Xhy-bQ-lb8"/>
                         <constraint firstAttribute="height" constant="40" id="YNE-E1-ICE"/>
+                        <constraint firstItem="E50-tT-DSn" firstAttribute="leading" secondItem="IF5-Jl-thx" secondAttribute="trailing" constant="16" id="eyZ-O3-8kg"/>
                         <constraint firstItem="IF5-Jl-thx" firstAttribute="leading" secondItem="ITY-U1-dsY" secondAttribute="leading" constant="20" id="gya-Da-aYH"/>
                         <constraint firstItem="IF5-Jl-thx" firstAttribute="centerY" secondItem="ITY-U1-dsY" secondAttribute="centerY" id="kZ3-A6-AB4"/>
                     </constraints>

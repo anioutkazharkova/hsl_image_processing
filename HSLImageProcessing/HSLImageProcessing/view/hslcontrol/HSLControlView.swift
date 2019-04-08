@@ -108,6 +108,13 @@ class HSLControlView: UIView {
         colorPalette?.setupData(colors: colors)
     }
     
+    
+    func changeIntencity(sense: CGFloat) {
+        self.selectedFilter?.sense = sense
+        listener?.colorChanged(filter: selectedFilter!)
+    }
+    
+    
     func changeFilter(filter: ColorFilter) {
         if let hue = currentHue, let sat = currentSat, let lum = currentLum {
             selectedFilter?.selectedHue = CGFloat(hue)

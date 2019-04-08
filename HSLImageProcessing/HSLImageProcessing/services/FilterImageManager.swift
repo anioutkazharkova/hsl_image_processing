@@ -12,6 +12,7 @@ class FilterImageManager: NSObject {
     static let sharedInstance = FilterImageManager()
     
     var selectedFilter: ColorFilter = ColorFilter(color: .red)
+    private var sense: CGFloat = 0.15
     
     private var workImage: UIImage?
     var filters=[ColorFilter] ()

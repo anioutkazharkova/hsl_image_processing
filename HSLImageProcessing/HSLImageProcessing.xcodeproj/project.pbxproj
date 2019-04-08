@@ -52,6 +52,7 @@
 		8464929F225B157F00407411 /* ColorChangedListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8464929E225B157F00407411 /* ColorChangedListener.swift */; };
 		846492A1225B15A300407411 /* FilterChangedListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846492A0225B15A300407411 /* FilterChangedListener.swift */; };
 		846492A3225B160200407411 /* ListOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846492A2225B160200407411 /* ListOwner.swift */; };
+		846492A5225B441200407411 /* ThumbSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846492A4225B441200407411 /* ThumbSlider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +103,7 @@
 		8464929E225B157F00407411 /* ColorChangedListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorChangedListener.swift; sourceTree = "<group>"; };
 		846492A0225B15A300407411 /* FilterChangedListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterChangedListener.swift; sourceTree = "<group>"; };
 		846492A2225B160200407411 /* ListOwner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOwner.swift; sourceTree = "<group>"; };
+		846492A4225B441200407411 /* ThumbSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbSlider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -321,6 +323,7 @@
 			children = (
 				6353248A2258E29F003E3762 /* GradientSlider.swift */,
 				635324B1225A23A0003E3762 /* HSVSlider.swift */,
+				846492A4225B441200407411 /* ThumbSlider.swift */,
 			);
 			path = sliders;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				8464928B225B0F5100407411 /* CGFloat+ColorGroup.swift in Sources */,
 				846492A1225B15A300407411 /* FilterChangedListener.swift in Sources */,
 				635324892258DD4D003E3762 /* ImageScrollView.swift in Sources */,
+				846492A5225B441200407411 /* ThumbSlider.swift in Sources */,
 				84649281225B0E4700407411 /* UIColor+Group.swift in Sources */,
 				635324922259197E003E3762 /* ColorFilter.swift in Sources */,
 				8464929F225B157F00407411 /* ColorChangedListener.swift in Sources */,
