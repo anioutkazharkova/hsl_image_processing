@@ -75,6 +75,7 @@ class FilterImageManager: NSObject {
         self.filters = [ColorFilter]()
     }
     
+    //Применение фильтра с установленными сдвигами
     func apply() -> UIImage? {
         let ciFilter = AdvHSLFilter()
         if let image = workImage, let ci = CIImage(image: image) {

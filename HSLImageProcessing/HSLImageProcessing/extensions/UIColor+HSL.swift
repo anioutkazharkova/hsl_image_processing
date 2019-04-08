@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+//Методв для работы с HSL
 extension UIColor {
     convenience  init(hue: CGFloat) {
         let correctHue = hue < 0 ? 1 + hue : hue

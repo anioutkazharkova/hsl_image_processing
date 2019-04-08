@@ -13,7 +13,7 @@ class ImageAdapter: NSObject, UICollectionViewDelegate, UICollectionViewDataSour
     var sideSize: CGFloat = 80.0
     weak var owner: ListOwner?
     weak var photoHolder: PhotoHolderProtocol? = nil
-   
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return (photoHolder?.assets?.count ?? 0)
     }
@@ -23,7 +23,6 @@ class ImageAdapter: NSObject, UICollectionViewDelegate, UICollectionViewDataSour
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImagePickerCell.cellIdentifier,
                                                             for: indexPath) as? ImagePickerCell else {
                                                                 return UICollectionViewCell()
-                                                                
         }
         
         photoHolder?.loadImageForAsset(index: indexPath.row, size: sideSize, success: { image in

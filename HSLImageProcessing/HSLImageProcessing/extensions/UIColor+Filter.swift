@@ -11,9 +11,7 @@ import UIKit
 
 extension UIColor {
     func createColorSet() -> [CGColor] {
-        
-        let hsb = self.hsb()
-        
+        let hsb = self.hsb()        
         return createColorSet(lum: hsb.2)
     }
     

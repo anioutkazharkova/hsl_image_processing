@@ -9,6 +9,7 @@
 import CoreImage
 import UIKit
 
+ //Фильтр
 class AdvHSLFilter: CIFilter {
    
     var inputImage: CIImage?

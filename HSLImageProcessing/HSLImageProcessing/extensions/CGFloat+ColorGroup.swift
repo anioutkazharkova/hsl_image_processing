@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+//По цвету получаем его группу для сдвига
 extension CGFloat {
     func colorForHue() -> Colors {
         let step: CGFloat = ColorFilter.step
