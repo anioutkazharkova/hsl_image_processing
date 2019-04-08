@@ -12,6 +12,7 @@ import UIKit
 @IBDesignable
 class HSLControlView: UIView {
 
+    private var sense: CGFloat = 0.15
     weak var listener: ColorChangedListener?
     weak var filterListener: FilterChangedListener? {
         didSet {
@@ -21,6 +22,7 @@ class HSLControlView: UIView {
 
     var selectedFilter: ColorFilter? = nil {
         didSet {
+            self.selectedFilter?.sense = sense
             setupSliders(color: selectedColor)
         }
     }
@@ -108,8 +110,9 @@ class HSLControlView: UIView {
         colorPalette?.setupData(colors: colors)
     }
     
-    
+    //Передача интенсивности текущему фильтру
     func changeIntencity(sense: CGFloat) {
+        self.sense = sense
         self.selectedFilter?.sense = sense
         listener?.colorChanged(filter: selectedFilter!)
     }
@@ -122,6 +125,7 @@ class HSLControlView: UIView {
             selectedFilter?.selectedLum = CGFloat(lum)
         }
         self.selectedFilter = filter
+        self.selectedFilter?.sense = sense
     }
     
    private func setupSliders(color: UIColor) {
@@ -142,6 +146,7 @@ class HSLControlView: UIView {
         }
     }
 
+    //При смене цвета изменить бегунки насыщенности и светлоты
   private  func resetForHue() {
         if let hue = currentHue, let lum = currentLum {
             currentColor = selectedColor.hslColor(hue: selectedColor.normalizeHue(shift: CGFloat(hue)/ColorFilter.maxHue), sat: 1, lum: CGFloat(lum)/ColorFilter.lumDiv)
@@ -150,6 +155,7 @@ class HSLControlView: UIView {
         }
     }
 
+//При смене светлоты изменить бегунки цвета и насыщенности
   private  func resetForLum() {
         if let hue = currentHue, let lum = currentLum {
             currentColor = selectedColor.hslColor(hue: selectedColor.normalizeHue(shift: CGFloat(hue)/ColorFilter.maxHue), sat: 1, lum: CGFloat(lum)/ColorFilter.lumDiv)

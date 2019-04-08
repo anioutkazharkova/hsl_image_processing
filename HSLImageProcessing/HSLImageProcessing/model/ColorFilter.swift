@@ -9,6 +9,7 @@
 import Foundation
 import  UIKit
 
+//Модель фильтра
 class ColorFilter {
 
     static let maxHue: CGFloat = 360.0
@@ -31,6 +32,7 @@ class ColorFilter {
         }
     }
 
+    //Преобразование светлоты для использования в фильтре
     var normalizeLum: CGFloat {
         if (selectedLum > ColorFilter.lumStart) {
           return  1.0 + (selectedLum - ColorFilter.lumStart)/(ColorFilter.lumDiv)*0.5*sense

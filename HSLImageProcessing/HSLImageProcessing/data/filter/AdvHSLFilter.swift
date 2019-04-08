@@ -10,9 +10,7 @@ import CoreImage
 import UIKit
 
 class AdvHSLFilter: CIFilter {
-    
-    var sense: CGFloat = 0.15
-    
+   
     var inputImage: CIImage?
     var inputRedShift = CIVector(x: 0, y: 1, z: 1)
     var inputOrangeShift = CIVector(x: 0, y: 1, z: 1)
@@ -95,6 +93,6 @@ class AdvHSLFilter: CIFilter {
                                          inputAquaShift,
                                          inputBlueShift,
                                          inputPurpleShift,
-                                         inputMagentaShift, sense])
+                                         inputMagentaShift])
     }
 }

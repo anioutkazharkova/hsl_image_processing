@@ -36,7 +36,7 @@ return vec3(hue, sat, lum);
 
 kernel vec4 kernelFunc(sampler image,
 vec3 redShift, vec3 orangeShift, vec3 yellowShift, vec3 greenShift,
-vec3 aquaShift, vec3 blueShift, vec3 purpleShift, vec3 magentaShift, float sense)
+vec3 aquaShift, vec3 blueShift, vec3 purpleShift, vec3 magentaShift)
 {
 vec4 pixel = unpremultiply(sample(image, samplerCoord(image)));
 vec3 hsv = rgb2hsv(pixel.rgb);
