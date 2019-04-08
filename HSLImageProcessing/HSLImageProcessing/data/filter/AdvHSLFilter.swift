@@ -10,9 +10,9 @@ import CoreImage
 import UIKit
 
 class AdvHSLFilter: CIFilter {
-
+    
     var sense: CGFloat = 0.15
-
+    
     var inputImage: CIImage?
     var inputRedShift = CIVector(x: 0, y: 1, z: 1)
     var inputOrangeShift = CIVector(x: 0, y: 1, z: 1)
@@ -22,20 +22,20 @@ class AdvHSLFilter: CIFilter {
     var inputBlueShift = CIVector(x: 0, y: 1, z: 1)
     var inputPurpleShift = CIVector(x: 0, y: 1, z: 1)
     var inputMagentaShift = CIVector(x: 0, y: 1, z: 1)
-
+    
     let kernel: CIColorKernel? = {
         let hslData = Bundle.main.path(forResource: "hsv_filter", ofType: "cikernel")
-
+        
         guard let path = hslData,
             let code = try? String(contentsOfFile: path),
             let kernel = CIColorKernel(source: code) else { return nil }
         return kernel
     }()
-
+    
     func setupColorFilter(filter: ColorFilter) {
         self.setupFilter(selectedColor: filter.defaultColor, shift: filter.shift)
     }
-
+    
     func setupFilter(selectedColor: Colors, shift: CIVector) {
         switch selectedColor {
         case .red:
@@ -56,11 +56,11 @@ class AdvHSLFilter: CIFilter {
             inputMagentaShift = shift
         }
     }
-
+    
     func resetFilter() {
         resetShifts()
     }
-
+    
     private func resetShifts() {
         inputRedShift = CIVector(x: 0, y: 1, z: 1)
         inputOrangeShift = CIVector(x: 0, y: 1, z: 1)
@@ -71,30 +71,30 @@ class AdvHSLFilter: CIFilter {
         inputPurpleShift = CIVector(x: 0, y: 1, z: 1)
         inputMagentaShift = CIVector(x: 0, y: 1, z: 1)
     }
-
-        override var attributes: [String: Any] {
-            return [
-                kCIAttributeFilterDisplayName: "HSL" as AnyObject,
-                "inputImage": [kCIAttributeIdentity: 0,
-                               kCIAttributeClass: "CIImage",
-                               kCIAttributeDisplayName: "Image",
-                               kCIAttributeType: kCIAttributeTypeImage]
-            ]
+    
+    override var attributes: [String: Any] {
+        return [
+            kCIAttributeFilterDisplayName: "HSL" as AnyObject,
+            "inputImage": [kCIAttributeIdentity: 0,
+                           kCIAttributeClass: "CIImage",
+                           kCIAttributeDisplayName: "Image",
+                           kCIAttributeType: kCIAttributeTypeImage]
+        ]
+    }
+    
+    override var outputImage: CIImage? {
+        guard let inputImage = inputImage else {
+            return nil
         }
-
-        override var outputImage: CIImage? {
-            guard let inputImage = inputImage else {
-                return nil
-            }
-            return kernel?.apply(extent: inputImage.extent,
-                                            arguments: [inputImage,
-                                                        inputRedShift,
-                                                        inputOrangeShift,
-                                                        inputYellowShift,
-                                                        inputGreenShift,
-                                                        inputAquaShift,
-                                                        inputBlueShift,
-                                                        inputPurpleShift,
-                                                        inputMagentaShift, sense])
-        }
+        return kernel?.apply(extent: inputImage.extent,
+                             arguments: [inputImage,
+                                         inputRedShift,
+                                         inputOrangeShift,
+                                         inputYellowShift,
+                                         inputGreenShift,
+                                         inputAquaShift,
+                                         inputBlueShift,
+                                         inputPurpleShift,
+                                         inputMagentaShift, sense])
+    }
 }

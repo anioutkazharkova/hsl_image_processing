@@ -7,58 +7,55 @@
 //
 
 import UIKit
-import Photos
 
 class ImagePickerVC: BaseVC {
-
+    
     private weak var photoManager = ImagePhotoManager.shared
     var adapter: ImageAdapter?
-    @IBOutlet weak var imageList: UICollectionView!
 
-    @IBOutlet weak var loader: UIActivityIndicatorView!
+    @IBOutlet weak var imageList: UICollectionView?
+    @IBOutlet weak var loader: UIActivityIndicatorView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         adapter = ImageAdapter()
         adapter?.sideSize = ((self.view?.bounds.width ?? 0) - 8.0)/4
-
-        imageList.register(UINib.init(nibName: ImagePickerCell.cellIdentifier, bundle: nil), forCellWithReuseIdentifier: ImagePickerCell.cellIdentifier)
-
+        
+        imageList?.register(UINib.init(nibName: ImagePickerCell.cellIdentifier, bundle: nil), forCellWithReuseIdentifier: ImagePickerCell.cellIdentifier)
+        
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.adapter?.owner = self
-        imageList.delegate = adapter
-        imageList.dataSource = adapter
+        self.adapter?.photoHolder = photoManager
+        imageList?.delegate = adapter
+        imageList?.dataSource = adapter
         loadAssets()
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         self.adapter?.owner = nil
-        imageList.delegate = nil
-        imageList.dataSource = nil
+        self.adapter?.photoHolder = nil
+        imageList?.delegate = nil
+        imageList?.dataSource = nil
         super.viewWillDisappear(animated)
     }
-
+    
     func loadAssets() {
+        self.showLoading(show: true)
         ImagePhotoManager.shared.loadAssets(success: {
             [weak self] result in
-             self?.showLoading(show: true)
-            self?.setupAssets(assets: result)
+            DispatchQueue.main.async { [weak self] in
+                self?.imageList?.reloadData()
+                self?.showLoading(show: false)
+                self?.imageList?.isHidden = false
+            }
             }, failure: { [weak self] in
-            self?.showLoading(show: false)
-            self?.showNeedAccessMessage()
+                self?.showLoading(show: false)
+                self?.showNeedAccessMessage()
         })
-    }
-
-    func setupAssets(assets: PHFetchResult<AnyObject>) {
-        adapter?.loadAssets(assets: assets)
-        DispatchQueue.main.async { [weak self] in
-            self?.imageList?.reloadData()
-            self?.showLoading(show: false)
-            self?.imageList?.isHidden = false
-        }
     }
     
     func showNeedAccessMessage() {
@@ -74,8 +71,18 @@ class ImagePickerVC: BaseVC {
         
         show(alert, sender: nil)
     }
-
-    func showLoading(show: Bool) {
+    
+    private func loadImage(index: Int) {
+        photoManager?.selectAsset(index: index)
+        goToFilter()
+    }
+    
+    private func goToFilter() {
+        let vc = ImageSettingsVC()
+        self.navigationController?.pushViewController(vc, animated: false)
+    }
+    
+    private func showLoading(show: Bool) {
         if (show) {
             self.loader?.startAnimating()
         } else {
@@ -83,25 +90,15 @@ class ImagePickerVC: BaseVC {
         }
         self.loader?.isHidden = !show
     }
-
-    private func loadImage(index: Int) {
-        photoManager?.selectAsset(index: index)
-      goToFilter()
-    }
-
-    private func goToFilter() {
-        let vc = ImageSettingsVC()
-        self.navigationController?.pushViewController(vc, animated: false)
-    }
 }
 
 extension ImagePickerVC: ListOwner {
     func reload() {
         imageList?.reloadData()
     }
-
+    
     func selectedItem(index: Int) {
         self.loadImage(index: index)
     }
-
+    
 }
