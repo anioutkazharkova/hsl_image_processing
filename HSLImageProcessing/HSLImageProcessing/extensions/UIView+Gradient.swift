@@ -13,7 +13,7 @@ extension UIView {
     static func createGradient(size: CGSize, colorSet: [CGColor]) -> CAGradientLayer {
         let tgl = CAGradientLayer()
         tgl.frame = CGRect.init(x: 0, y: 0, width: size.width, height: size.height)
-        tgl.cornerRadius = tgl.frame.height / 2
+        tgl.cornerRadius = 0.0
         tgl.masksToBounds = false
         tgl.colors = colorSet
         tgl.startPoint = CGPoint.init(x: 0.0, y: 0)

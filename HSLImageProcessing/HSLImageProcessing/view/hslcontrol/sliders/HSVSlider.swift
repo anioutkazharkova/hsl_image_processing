@@ -9,19 +9,24 @@
 import UIKit
 
 class HSVSlider: UISlider {
+    
+    private let gradient: CAGradientLayer = CAGradientLayer()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addGradient()
-        self.setThumbImage(UIImage(), for: .normal)
+       initContent()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+       initContent()
+    }
+    
+    private func initContent() {
         addGradient()
         self.setThumbImage(UIImage(), for: .normal)
+        self.layer.cornerRadius = 0.0
     }
-
-    private let gradient: CAGradientLayer = CAGradientLayer()
 
     func addGradient() {
         let colors = [ColorUtility.magenta.cgColor,
@@ -36,5 +41,11 @@ class HSVSlider: UISlider {
         let trackImage = UIImage.gradientImage(size: self.bounds.size, colorSet: colors)
         self.setMinimumTrackImage(trackImage, for: .normal)
         self.setMaximumTrackImage(trackImage, for: .normal)
+    }
+    
+    override func trackRect(forBounds bounds: CGRect) -> CGRect {
+        var newBounds = super.trackRect(forBounds: bounds)
+        newBounds.size.height = self.bounds.height
+        return newBounds
     }
 }
