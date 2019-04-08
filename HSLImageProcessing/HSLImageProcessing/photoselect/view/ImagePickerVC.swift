@@ -73,6 +73,11 @@ class ImagePickerVC: BaseVC {
         show(alert, sender: nil)
     }
     
+    
+    @IBAction func takePhotoClicked(_ sender: Any) {
+        self.takePhoto()
+    }
+    
     private func loadImage(index: Int) {
         photoManager?.selectAsset(index: index)
         goToFilter()

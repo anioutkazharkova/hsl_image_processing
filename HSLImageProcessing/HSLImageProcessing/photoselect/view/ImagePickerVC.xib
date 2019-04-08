@@ -42,6 +42,9 @@
                             <rect key="frame" x="0.0" y="0.0" width="187.5" height="50"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" image="camera"/>
+                            <connections>
+                                <action selector="takePhotoClicked:" destination="-1" eventType="touchUpInside" id="WG5-14-WOg"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fOk-Mj-Zkq">
                             <rect key="frame" x="187.5" y="0.0" width="187.5" height="50"/>
