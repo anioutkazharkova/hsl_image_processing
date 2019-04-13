@@ -40,6 +40,7 @@ class ImagePickerVC: BaseVC {
         self.adapter?.photoHolder = nil
         imageList?.delegate = nil
         imageList?.dataSource = nil
+        imageList?.reloadData()
         super.viewWillDisappear(animated)
     }
     
